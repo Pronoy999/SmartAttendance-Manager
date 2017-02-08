@@ -53,6 +53,9 @@ public class WifiController {
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
         wifiConfiguration.SSID = _SSID;
         wifiConfiguration.preSharedKey = _key;
+        wifiConfiguration.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+        wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+        wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
         wifiManager.addNetwork(wifiConfiguration);
         return wifiManager.enableNetwork(wifiConfiguration.networkId, true);
     }
