@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 
 import java.lang.reflect.Method;
 
@@ -82,7 +81,7 @@ public class WifiController {
             wifiManager.setWifiEnabled(false);
             Method method1 = wifiManager.getClass().getMethod("getWifiApConfiguration");
             prev_config = (WifiConfiguration) method1.invoke(wifiManager);
-            Log.d("CONFIG_GET:", " " + prev_config.SSID);
+            Message.logMessages("CONFIG_GET:", " " + prev_config.SSID);
             Method method = wifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
             WifiConfiguration config = new WifiConfiguration();
             config.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
@@ -92,7 +91,7 @@ public class WifiController {
             config.preSharedKey = password;
             method.invoke(wifiManager, config, true);
         }catch (Exception e){
-            Log.d("ERROR: ", e.toString());
+            Message.logMessages("ERROR: ", e.toString());
             e.printStackTrace();
         }
         return prev_config;
@@ -111,7 +110,7 @@ public class WifiController {
             Method method = wifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
             method.invoke(wifiManager, null, false);
         }catch (Exception e){
-            Log.d("ERROR: ", e.toString());
+            Message.logMessages("ERROR: ", e.toString());
             e.printStackTrace();
         }
     }
