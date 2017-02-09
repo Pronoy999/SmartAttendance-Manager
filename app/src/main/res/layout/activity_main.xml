@@ -18,17 +18,17 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Choose your Profile:"
+          android:text="@string/choose_profile"
+          android:textAlignment="center"
           android:textStyle="bold"
           android:textColorHighlight="@color/colorPrimaryDark"
-          android:textSize="@dimen/activity_horizontal_margin"
+          android:textSize="20sp"
           android:scrollbarSize="10sp"
           android:textColorLink="@android:color/holo_blue_light"
           tools:visibility="visible"
-          android:focusable="?android:attr/isLightTheme"
           android:fontFamily="casual"/>
        <LinearLayout
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:orientation="vertical">
            <ImageView
@@ -38,7 +38,7 @@
                android:src="@drawable/teacher"
                android:clickable="true"
                android:onClick="teacher"
-               android:padding="5sp"
+               android:padding="15sp"
                android:contentDescription="@string/app_name"/>
            <ImageView
                android:layout_width="wrap_content"
@@ -47,8 +47,7 @@
                android:src="@drawable/student"
                android:clickable="true"
                android:onClick="student"
-               android:padding="5sp"
-               />
+               android:padding="15sp" />
        </LinearLayout>
 
    </LinearLayout>
