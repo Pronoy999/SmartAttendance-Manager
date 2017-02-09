@@ -45,13 +45,37 @@ public class DataBaseController{
         return  sqLiteDatabase.insert(Constant.TABLE_NAME, null, contentValues);
     }
 
+    /**
+     * Thsi method stores the SSID and Passwords of the students from the datdabase and stores them in String Arrays of keys :ssid and password and puts it in a Bundle
+     * @return b:Bundle b contains the String Arrays ssid and password with their keys same as their names.
+     */
+    public Bundle getPasswordAndSSID(){
+
+        int i=1;
+        Bundle b=new Bundle();
+        String ssid[]=new String [Constant.N];
+        String password[]=new String[Constant.N];
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        String columns[] = {Constant.SSID, Constant.PASSWORD};
+        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns,
+                null, null, null, null, null);
+        while (cursor.moveToNext()){
+            ssid[i++]=cursor.getString(cursor.getColumnIndex(Constant.SSID));
+            password[++i]=cursor.getString(cursor.getColumnIndex(Constant.PASSWORD));
+        }
+        cursor.close();
+        b.putStringArray("ssid",ssid);
+        b.putStringArray("password",password);
+        return  b;
+    }
+
     /**This method updates the Database attendance
      *
      * @param bssid: bssid of the current student
      * @return id of the row where the update is made
      */
       public long putAttendance(String bssid){
-             int attendance=0,flag=0;
+          int attendance=0,flag=0;
              SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
             String columns[]={Constant.ATTENDANCE};
             String selectionArgs[]={bssid};
@@ -61,7 +85,6 @@ public class DataBaseController{
                 return -1;
             }
             while (cursor.moveToNext()) {
-
                 attendance=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
             }
             Log.d("TAG", "BSSID found\n Attendance being registered");
@@ -95,9 +118,35 @@ public class DataBaseController{
             rolls[i++]=cursor.getString(cursor.getColumnIndex(Constant.ROLL_NUMBER));
             atten[i++]=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
         }
+        cursor.close();
         b.putStringArray("name",names);
         b.putStringArray("roll",rolls);
         b.putIntArray("attendance",atten);
+        b.putInt("ArrayIndex",i);
+        return b;
+
+    }
+    public Bundle getAbsentList(){
+        Bundle b=new Bundle();
+        int i=1;
+        String names[]=new String[Constant.N];
+        String rolls[]=new String[Constant.N];
+        int atten[]=new int[Constant.N];
+        ContentValues contentValues =new ContentValues();
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.ATTENDANCE};
+        String selectionArgs[] = {"0"};
+        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns, Constant.FLAG + "=?", selectionArgs, null, null, null, null);
+        while (cursor.moveToNext()) {
+            names [i++]=cursor.getString(cursor.getColumnIndex(Constant.NAME));
+            rolls[i++]=cursor.getString(cursor.getColumnIndex(Constant.ROLL_NUMBER));
+            atten[i++]=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
+        }
+        cursor.close();
+        b.putStringArray("name",names);
+        b.putStringArray("roll",rolls);
+        b.putIntArray("attendance",atten);
+        b.putInt("ArrayIndex",i);
         return b;
 
     }
