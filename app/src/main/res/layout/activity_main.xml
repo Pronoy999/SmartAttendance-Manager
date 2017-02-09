@@ -37,7 +37,6 @@
                android:id="@+id/teacher"
                android:src="@drawable/teacher"
                android:clickable="true"
-               android:onClick="teacher"
                android:padding="15sp"
                android:contentDescription="@string/app_name"/>
            <ImageView
@@ -46,7 +45,6 @@
                android:id="@+id/student"
                android:src="@drawable/student"
                android:clickable="true"
-               android:onClick="student"
                android:padding="15sp" />
        </LinearLayout>
 
