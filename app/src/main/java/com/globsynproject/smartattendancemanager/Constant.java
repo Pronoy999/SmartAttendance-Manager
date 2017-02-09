@@ -5,6 +5,7 @@ package com.globsynproject.smartattendancemanager;
  */
 
 public abstract class Constant {
+   // public static final int n;//Number of students
     public static final String DATABASE_NAME="StudentDataBase.db";
     public static final String TABLE_NAME="Student";
     public static final String FILE_NAME="temp.dat";
@@ -16,4 +17,5 @@ public abstract class Constant {
     public static final String ATTENDANCE = "ATTENDANCE";
     public static final String SSID = "SSID";
     public static final String PASSWORD = "PASSWORD";
+    public static String FLAG="FLAG";
 }
