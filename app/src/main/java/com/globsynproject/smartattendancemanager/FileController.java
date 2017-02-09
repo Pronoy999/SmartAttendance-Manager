@@ -44,7 +44,6 @@ public class FileController {
            }
        }
     }
-
     /**
      * NOTE: This method is used to send the list of the BSSID's to the database.
      */
