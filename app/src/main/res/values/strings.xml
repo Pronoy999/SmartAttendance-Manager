@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Smart Attendance Manager</string>
+    <string name="choose_profile">Choose your profile:</string>
 </resources>
