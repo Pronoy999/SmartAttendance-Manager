@@ -1,6 +1,7 @@
 package com.globsynproject.smartattendancemanager;
 
 import android.content.Context;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -26,6 +27,21 @@ public class WifiController {
         wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
 
+    /**
+     * Checks whether the WiFi is ON or not.
+     * @return boolean: true if WiFi is ON, else false.
+     */
+    public boolean checkWifiOn(){
+        return wifiManager.isWifiEnabled();
+    }
+
+    /**
+     * Checks whether the phone is connected to any WiFi network or not.
+     * @return boolean: true if connected to a network, else false.
+     */
+    public boolean getConnectionStatus(){
+        return wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED);
+    }
     /**
      * Turns wifi ON.
      * @return boolean: true if the operation succeeds, else false.
@@ -55,8 +71,8 @@ public class WifiController {
         wifiConfiguration.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-        wifiManager.addNetwork(wifiConfiguration);
-        return wifiManager.enableNetwork(wifiConfiguration.networkId, true);
+
+        return wifiManager.enableNetwork(wifiManager.addNetwork(wifiConfiguration), true);
     }
 
     /**

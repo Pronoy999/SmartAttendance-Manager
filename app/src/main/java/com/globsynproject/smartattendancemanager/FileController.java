@@ -25,7 +25,7 @@ public class FileController {
      * NOTE: This is the method to insert the data to the file temporarily after taking the attendance.
      * @param BSSID: The String BSSID that will be scanned from the WIFI Controller method for attendance.
      */
-    public void appenData_File(String BSSID){
+    public void appendData_File(String BSSID){
        try {
            outputStreamWriter = new OutputStreamWriter(context.openFileOutput(Constant.FILE_NAME, Context.MODE_APPEND));
            BSSID+=",";
