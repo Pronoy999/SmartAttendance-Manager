@@ -68,14 +68,18 @@ public class WifiController {
         int id =info.getNetworkId();
         return wifiManager.disableNetwork(id) && wifiManager.removeNetwork(id);
     }
-
     /**
      * Turns access point on with the SSID as 'name' and Key as 'password'.
+     * NOTE: Check the API Level for System Writer Permissions. If not Present then run the Commented Code.
      * @param name The name of the access point that is to be made.
      * @param password The password of the access point that is to be made.
      * @return WifiConfiguration: The object of WifiConfiguration that holds the settings of the previous access point (to be used to revert back to old settings when access point is turned off).
      */
     public WifiConfiguration turnAccessPointOn(String name, String password){
+        /*if(!Settings.System.canWrite(context)){
+            Intent i = new Intent().setAction(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            context.startActivity(i);
+        }*/
         WifiConfiguration prev_config = null;
         try{
             wifiManager.setWifiEnabled(false);
