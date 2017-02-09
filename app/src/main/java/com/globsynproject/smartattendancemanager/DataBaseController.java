@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -60,9 +61,10 @@ public class DataBaseController{
                 return -1;
             }
             while (cursor.moveToNext()) {
+
                 attendance=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
             }
-            Log.d("TAG", "BSSID found\n Attendance being registered")
+            Log.d("TAG", "BSSID found\n Attendance being registered");
             ContentValues contentValues=new ContentValues();
             contentValues.put(Constant.ATTENDANCE,attendance+1);
             contentValues.put(Constant.FLAG,1);
@@ -72,15 +74,32 @@ public class DataBaseController{
     }
 
     /**
-     *
-     * @return
+     * This function is called after the Database has been updated with current attendance.
+     * @return b: b is a Bundle type data which contains String arrays with keys name,roll AND Integer array with key attendance.
+     * The Bundle shall be extracted to from the present list of students for the current day
      */
 
-    public ContentValues  getPresentList(){
-        SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
-        String columns[]={Constant.NAME,Constant.ROLL_NUMBER,Constant.ATTENDANCE};
-        String selectionArgs[]={"1"};
-        Cursor cursor=sqLiteDatabase.query(Constant.TABLE_NAME,columns,Constant.FLAG+"=?",selectionArgs,null,null,null,null);
+    public Bundle  getPresentList() {
+        Bundle b=new Bundle();
+        int i=1;
+        String names[]=new String[Constant.N];
+        String rolls[]=new String[Constant.N];
+        int atten[]=new int[Constant.N];
+        ContentValues contentValues =new ContentValues();
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.ATTENDANCE};
+        String selectionArgs[] = {"1"};
+        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns, Constant.FLAG + "=?", selectionArgs, null, null, null, null);
+        while (cursor.moveToNext()) {
+             names [i++]=cursor.getString(cursor.getColumnIndex(Constant.NAME));
+            rolls[i++]=cursor.getString(cursor.getColumnIndex(Constant.ROLL_NUMBER));
+            atten[i++]=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
+        }
+        b.putStringArray("name",names);
+        b.putStringArray("roll",rolls);
+        b.putIntArray("attendance",atten);
+        return b;
+
     }
 
     private static class MyHelper extends SQLiteOpenHelper {
