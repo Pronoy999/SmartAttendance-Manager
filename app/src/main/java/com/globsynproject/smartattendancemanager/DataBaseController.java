@@ -60,9 +60,7 @@ public class DataBaseController{
                 return -1;
             }
             while (cursor.moveToNext()) {
-
-                 int indexAttendance = cursor.getColumnIndex(Constant.ATTENDANCE);
-                attendance=cursor.getInt(indexAttendance);
+                attendance=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));
             }
             Log.d("TAG", "BSSID found\n Attendance being registered")
             ContentValues contentValues=new ContentValues();
@@ -83,7 +81,6 @@ public class DataBaseController{
         String columns[]={Constant.NAME,Constant.ROLL_NUMBER,Constant.ATTENDANCE};
         String selectionArgs[]={"1"};
         Cursor cursor=sqLiteDatabase.query(Constant.TABLE_NAME,columns,Constant.FLAG+"=?",selectionArgs,null,null,null,null);
-        
     }
 
     private static class MyHelper extends SQLiteOpenHelper {
