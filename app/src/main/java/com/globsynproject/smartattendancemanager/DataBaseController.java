@@ -52,14 +52,6 @@ public class DataBaseController{
         String[] whereArgs = {bssid};
         return sqLiteDatabase.update(Constant.TABLE_NAME,contentValues,MyHelper.BSSID+"=?",whereArgs);
     }
-
-
-
-
-
-
-
-
     static class MyHelper extends SQLiteOpenHelper {
         //private static final String DATABASE_NAME = "mydatabase.db";
 
