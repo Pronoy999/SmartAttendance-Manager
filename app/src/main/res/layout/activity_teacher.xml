@@ -13,35 +13,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:padding="30sp">
+        android:layout_weight="1">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:src="@drawable/teacherlogin"
+            android:padding="50sp"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generate Attendance"
+            android:text="@string/get_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:layout_weight="3"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Manually"
+            android:text="@string/add_manually"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:layout_weight="3"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Attendance"
+            android:text="@string/view_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
-            android:layout_weight="3"/>
-    </LinearLayout>
+            android:layout_weight="3" />
+        </LinearLayout>
+
 </RelativeLayout>
 
