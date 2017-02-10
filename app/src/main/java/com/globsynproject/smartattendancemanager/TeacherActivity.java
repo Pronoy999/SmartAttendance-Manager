@@ -6,7 +6,7 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.widget.Button;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,7 +20,7 @@ public class TeacherActivity extends AppCompatActivity {
     Context context;
     static FileController fileController;
     String ssid[], pwd[];
-
+    Button takeAttendance,manualAttendance,showAttendance;
     int timeOut = 0, position =0, n;
 
     @Override
@@ -37,7 +37,7 @@ public class TeacherActivity extends AppCompatActivity {
         controller = new WifiController(this);
         Message.toastMessage(this, "Before pressing the button, please switch on WiFi and remain disconnected from ALL networks.", "long");
     }
-    public void startAttendance(View view){
+    public void startAttendance(){
         if(!controller.checkWifiOn()||(controller.checkWifiOn()&&controller.wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED))){
             Message.toastMessage(this, "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
             return;

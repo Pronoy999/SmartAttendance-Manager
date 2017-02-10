@@ -8,6 +8,62 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/back1"
     tools:context="com.globsynproject.smartattendancemanager.LoginActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="50sp">
+            <ImageView
+                android:layout_width="221dp"
+                android:layout_height="159dp"
+                android:id="@+id/icon"
+                android:src="@drawable/icon"
+                android:paddingBottom="20sp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:hint="@string/enter_name"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:paddingTop="30sp"
+                />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:inputType="numberPassword"
+                android:hint="@string/enter_password"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20sp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup"
+                android:text="@string/signup"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:paddingStart="20sp"
+                android:elevation="10sp" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

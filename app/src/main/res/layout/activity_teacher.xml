@@ -8,6 +8,40 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/back1"
     tools:context="com.globsynproject.smartattendancemanager.TeacherActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="30sp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Attendance"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:layout_weight="3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Manually"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:layout_weight="3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Attendance"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:layout_weight="3"/>
+    </LinearLayout>
 </RelativeLayout>
+

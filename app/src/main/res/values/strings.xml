@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Smart Attendance Manager</string>
     <string name="choose_profile">Choose your profile:</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
 </resources>

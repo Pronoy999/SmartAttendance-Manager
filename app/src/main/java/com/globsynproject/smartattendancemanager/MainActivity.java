@@ -12,6 +12,9 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
     private ImageView teacher;
     private ImageView student;
+    private Intent intent;
+    private Bundle bundle;
+    private FileController fileController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +55,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void goToTeacher(){
-        Intent intent=new Intent(MainActivity.this,TeacherActivity.class);
+        fileController=new FileController(getApplicationContext());
+        String login=fileController.check_loginFile();
+        if(login.equals("teacher logged in")){
+            intent=new Intent(MainActivity.this,TeacherActivity.class);
+        }
+        else {
+            bundle=new Bundle();
+            bundle.putString(Constant.LOGIN_ACCOUNT,"teacher");
+            intent=new Intent(MainActivity.this,LoginActivity.class);
+            intent.putExtras(bundle);
+        }
         startActivity(intent);
     }
     private void goToStudent(){
-        Intent intent=new Intent(MainActivity.this,TeacherActivity.class);
+        fileController=new FileController(getApplicationContext());
+        String login=fileController.check_loginFile();
+        if(login.equals("student logged in")){
+            intent=new Intent(MainActivity.this,StudentActivity.class);
+        }
+        else{
+            bundle=new Bundle();
+            bundle.putString(Constant.LOGIN_ACCOUNT,"student");
+            intent=new Intent(MainActivity.this,LoginActivity.class);
+            intent.putExtras(bundle);
+        }
         startActivity(intent);
     }
 }

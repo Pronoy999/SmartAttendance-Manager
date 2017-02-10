@@ -3,6 +3,7 @@ package com.globsynproject.smartattendancemanager;
 import android.content.Context;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
@@ -69,5 +70,43 @@ public class FileController {
      */
     public void delete_File(){
         context.deleteFile(Constant.FILE_NAME);
+    }
+
+    /**
+     * NOTE: This is the method to create the file for the first time.
+     * @param account: This is string to save whether the teacher logs in or student.
+     */
+    public void create_loginFile(String account){
+        try {
+            outputStreamWriter = new OutputStreamWriter(context.openFileOutput(Constant.LOGIN_FILE, Context.MODE_PRIVATE));
+            outputStreamWriter.write(account+" logged in");
+            outputStreamWriter.close();
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+    }
+
+    /**
+     * NOTE: This the method to check whether the account is logged in or not.
+     * @return: the data from the file, "student logged in" or "teacher logged in"
+     */
+    public String check_loginFile(){
+        String text="";
+        try{
+            FileInputStream fileInputStream=context.openFileInput(Constant.LOGIN_FILE);
+            Scanner obj=new Scanner(fileInputStream);
+            while(obj.hasNext())
+                text=obj.next();
+            obj.close();
+            fileInputStream.close();
+        }
+        catch (FileNotFoundException e){
+            return "not logged in";
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+        return text;
     }
 }
