@@ -63,4 +63,11 @@ public class FileController {
             Message.logMessages("ERROR: ",e.toString());
         }
     }
+
+    /**
+     * NOTE: This is the method to delete the file.
+     */
+    public void delete_File(){
+        context.deleteFile(Constant.FILE_NAME);
+    }
 }

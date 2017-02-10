@@ -53,8 +53,8 @@ public class DataBaseController{
 
         int i=1;
         Bundle b=new Bundle();
-        String ssid[]=new String [Constant.N];
-        String password[]=new String[Constant.N];
+        String ssid[]=new String [Constant.NUMBER_STUDENTS];
+        String password[]=new String[Constant.NUMBER_STUDENTS];
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
         String columns[] = {Constant.SSID, Constant.PASSWORD};
         Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns,
@@ -105,9 +105,9 @@ public class DataBaseController{
     public Bundle  getPresentList() {
         Bundle b=new Bundle();
         int i=1;
-        String names[]=new String[Constant.N];
-        String rolls[]=new String[Constant.N];
-        int atten[]=new int[Constant.N];
+        String names[]=new String[Constant.NUMBER_STUDENTS];
+        String rolls[]=new String[Constant.NUMBER_STUDENTS];
+        int atten[]=new int[Constant.NUMBER_STUDENTS];
         ContentValues contentValues =new ContentValues();
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
         String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.ATTENDANCE};
@@ -129,9 +129,9 @@ public class DataBaseController{
     public Bundle getAbsentList(){
         Bundle b=new Bundle();
         int i=1;
-        String names[]=new String[Constant.N];
-        String rolls[]=new String[Constant.N];
-        int atten[]=new int[Constant.N];
+        String names[]=new String[Constant.NUMBER_STUDENTS];
+        String rolls[]=new String[Constant.NUMBER_STUDENTS];
+        int atten[]=new int[Constant.NUMBER_STUDENTS];
         ContentValues contentValues =new ContentValues();
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
         String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.ATTENDANCE};

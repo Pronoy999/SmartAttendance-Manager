@@ -9,9 +9,9 @@ public abstract class Constant {
     /**
      * T is the total number of class occured> This shall be increased by one each time attendance is taken.
      */
-    public static int T=0;
+    public static int NUMBER_CLASS=0;
 /**The value of N is the total number of students in the class.This shall be initialized during registration*/
-    public static  int N=0;
+    public static  int NUMBER_STUDENTS=0;
     public static final String DATABASE_NAME="StudentDataBase.db";
     public static final String TABLE_NAME="Student";
     public static final String FILE_NAME="temp.dat";
