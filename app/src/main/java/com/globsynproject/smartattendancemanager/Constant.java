@@ -11,7 +11,7 @@ public abstract class Constant {
      */
     public static int CLASS_NUMBER=0;
 /**The value of STUDENTS_NUMBER is the total number of students in the class.This shall be initialized during registration*/
-    public static  int STUDENTS_NUMBER=0;
+    public static  int NUMBER_STUDENTS=0;
     public static final String DATABASE_NAME="StudentDataBase.db";
     public static final String TABLE_NAME="Student";
     public static final String FILE_NAME="temp.dat";
