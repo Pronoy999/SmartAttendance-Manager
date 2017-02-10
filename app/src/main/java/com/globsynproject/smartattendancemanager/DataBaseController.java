@@ -64,8 +64,8 @@ public class DataBaseController{
             password[++i]=cursor.getString(cursor.getColumnIndex(Constant.PASSWORD));
         }
         cursor.close();
-        b.putStringArray("ssid",ssid);
-        b.putStringArray("password",password);
+        b.putStringArray("SSID",ssid);
+        b.putStringArray("KEYS",password);
         return  b;
     }
 
