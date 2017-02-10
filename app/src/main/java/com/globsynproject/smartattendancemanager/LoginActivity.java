@@ -9,8 +9,10 @@ import android.widget.Button;
 public class LoginActivity extends AppCompatActivity {
     Button signup;
     String account;
-    FileController fileController;
+    FileController fileController=new FileController(getApplicationContext());
+    DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
     Intent intent;
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,9 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void goToActivity(){
         if(account.equals("teacher")){
+            bundle=dataBaseController.getPasswordAndSSID();
             intent=new Intent(LoginActivity.this,TeacherActivity.class);
+            intent.putExtras(bundle);
         }
         else if(account.equals("student")){
             intent=new Intent(LoginActivity.this,StudentActivity.class);

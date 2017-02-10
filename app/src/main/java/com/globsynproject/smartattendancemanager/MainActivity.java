@@ -54,11 +54,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * NOTE: This is the method to take the user to the teacher activity.
+     */
     private void goToTeacher(){
         fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
         if(login.equals("teacher logged in")){
+            DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
+            bundle=dataBaseController.getPasswordAndSSID();
             intent=new Intent(MainActivity.this,TeacherActivity.class);
+            intent.putExtras(bundle);
         }
         else {
             bundle=new Bundle();
@@ -68,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         }
         startActivity(intent);
     }
+
+    /**
+     * NOTE: This is the method to take the user to the Student activity.
+     */
     private void goToStudent(){
         fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();

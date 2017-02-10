@@ -6,6 +6,7 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.Timer;
@@ -18,7 +19,7 @@ public class TeacherActivity extends AppCompatActivity {
     Timer timer;
     TimerTask timerTask;
     Context context;
-    static FileController fileController;
+    FileController fileController;
     String ssid[], pwd[];
     Button takeAttendance,manualAttendance,showAttendance;
     int timeOut = 0, position =0, n;
@@ -28,6 +29,7 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        fileController=new FileController(getApplicationContext());
         Intent i = getIntent();
         Bundle b = i.getExtras();
         ssid = b.getStringArray("SSID");
@@ -35,7 +37,42 @@ public class TeacherActivity extends AppCompatActivity {
         n=ssid.length;
         context = this;
         controller = new WifiController(this);
-        Message.toastMessage(this, "Before pressing the button, please switch on WiFi and remain disconnected from ALL networks.", "long");
+        takeAttendance=(Button) findViewById(R.id.takeAttendance);
+        showAttendance=(Button) findViewById(R.id.showAttendance);
+        manualAttendance=(Button) findViewById(R.id.manualAttendance);
+        showAttendance.setVisibility(View.INVISIBLE);
+        manualAttendance.setVisibility(View.INVISIBLE);
+        takeAttendance.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Message.toastMessage(getApplicationContext(),"Take the attendance of the class!","");
+                return false;
+            }
+        });
+        manualAttendance.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Message.toastMessage(getApplicationContext(),"Add the attendance manually","");
+                return false;
+            }
+        });
+        showAttendance.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Message.toastMessage(getApplicationContext(),"Show today's attendance","");
+                return false;
+            }
+        });
+        if(controller.getConnectionStatus()){
+            Message.toastMessage(getApplicationContext(),"Before pressing the button, please switch on WiFi and remain disconnected from ALL networks.", "long");
+            return;
+        }
+        takeAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAttendance();
+            }
+        });
     }
     public void startAttendance(){
         if(!controller.checkWifiOn()||(controller.checkWifiOn()&&controller.wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED))){
@@ -76,6 +113,10 @@ public class TeacherActivity extends AppCompatActivity {
             Message.logMessages("DONE", "COMPLETE");
             controller.turnWifiOff();
             position=0; timeOut=0;
+            fileController.sendAttendance();
+            Message.toastMessage(getApplicationContext(),"Attendance taken!","");
+            showAttendance.setVisibility(View.VISIBLE);
+            manualAttendance.setVisibility(View.VISIBLE);
             return;
         }
         Message.logMessages("WIFI", "Setting up connection: "+ssid[pos]+", "+pwd[pos]);
@@ -89,7 +130,6 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     public void writeToFile(WifiInfo info){
-        fileController = new FileController(context);
         fileController.appendData_File(info.getBSSID());
     }
 }
