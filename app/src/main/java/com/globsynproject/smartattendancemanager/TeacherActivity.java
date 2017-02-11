@@ -1,6 +1,9 @@
 package com.globsynproject.smartattendancemanager;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
@@ -13,7 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TeacherActivity extends AppCompatActivity {
-
+    ProgressDialog progressDialog;
     WifiController controller;
     //WifiInfo info;
     Timer timer;
@@ -22,7 +25,7 @@ public class TeacherActivity extends AppCompatActivity {
     FileController fileController;
     String ssid[], pwd[];
     Button takeAttendance,manualAttendance,showAttendance;
-    int timeOut = 0, position =0, n;
+    int timeOut = 0, position =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,6 @@ public class TeacherActivity extends AppCompatActivity {
         Bundle b = i.getExtras();
         ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
         pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);
-        n=ssid.length;
         controller = new WifiController(this);
         takeAttendance=(Button) findViewById(R.id.takeAttendance);
         showAttendance=(Button) findViewById(R.id.showAttendance);
@@ -79,6 +81,7 @@ public class TeacherActivity extends AppCompatActivity {
             Message.toastMessage(this, "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
             return;
         }
+        showDialog(Constant.ID_PROGRESS_DIALOG);
         startNewConnection(position);
         timer = new Timer();
         timerTask = new TimerTask() {
@@ -88,7 +91,7 @@ public class TeacherActivity extends AppCompatActivity {
                 if(timeOut>=20){
                     Message.logMessages("WIFI: ","TIMED OUT");
                     timeOut=0; position++;
-
+                    progressDialog.incrementProgressBy(1);
                     startNewConnection(position);
                     return;
                 }
@@ -98,6 +101,7 @@ public class TeacherActivity extends AppCompatActivity {
                     writeToFile(controller.wifiManager.getConnectionInfo());
                     controller.disbandConnection();
                     timeOut=0; position++;
+                    progressDialog.incrementProgressBy(1);
                     startNewConnection(position);
                     return;
                 }
@@ -108,7 +112,9 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     public void startNewConnection(int pos){
-        if(pos>=n){
+        if(pos>=Constant.NUMBER_STUDENTS){
+            progressDialog.setProgress(0);
+            progressDialog.dismiss();
             TeacherActivity.this.timer.cancel();
             Message.logMessages("DONE", "COMPLETE");
             controller.turnWifiOff();
@@ -131,5 +137,27 @@ public class TeacherActivity extends AppCompatActivity {
 
     public void writeToFile(WifiInfo info){
         fileController.appendData_File(info.getBSSID());
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        progressDialog = new ProgressDialog(this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Taking Attendance");
+        progressDialog.setIcon(R.drawable.icon);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Toast.makeText(getApplicationContext(), "Attendance was not taken!", Toast.LENGTH_SHORT).show();
+                timer.cancel();
+                position=0; timeOut=0;
+                progressDialog.setProgress(0);
+                progressDialog.dismiss();
+            }
+        });
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.setMax(Constant.NUMBER_STUDENTS);
+        return progressDialog;
     }
 }
