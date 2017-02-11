@@ -80,7 +80,7 @@ public class FileController {
     public void create_loginFile(String account){
         try {
             outputStreamWriter = new OutputStreamWriter(context.openFileOutput(Constant.LOGIN_FILE, Context.MODE_PRIVATE));
-            outputStreamWriter.write(account+" logged in");
+            outputStreamWriter.write(account+" logged in,");
             outputStreamWriter.close();
         }
         catch (Exception e){
@@ -97,6 +97,7 @@ public class FileController {
         try{
             FileInputStream fileInputStream=context.openFileInput(Constant.LOGIN_FILE);
             Scanner obj=new Scanner(fileInputStream);
+            obj.useDelimiter(",");
             while(obj.hasNext())
                 text=obj.next();
             obj.close();
@@ -140,6 +141,7 @@ public class FileController {
             scanner.useDelimiter(",");
             while(scanner.hasNext()){
                 text+=scanner.next();
+                text+=" ";
             }
             scanner.close();
             fileInputStream.close();

@@ -124,7 +124,11 @@ public class RegisterActivity extends AppCompatActivity {
         timer.cancel();
     }
     private void goToActivity(){
+        Bundle bundle;
+        DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
+        bundle=dataBaseController.getPasswordAndSSID();
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

@@ -9,14 +9,16 @@ import android.widget.Button;
 public class LoginActivity extends AppCompatActivity {
     Button signup;
     String account;
-    FileController fileController=new FileController(getApplicationContext());
-    DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
+    FileController fileController;
+    DataBaseController dataBaseController;
     Intent intent;
     Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        fileController=new FileController(getApplicationContext());
+        dataBaseController=new DataBaseController(getApplicationContext());
         signup=(Button) findViewById(R.id.signup);
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();

@@ -18,7 +18,7 @@ public class TeacherActivity extends AppCompatActivity {
     //WifiInfo info;
     Timer timer;
     TimerTask timerTask;
-    Context context=getApplicationContext();
+    Context context;
     FileController fileController;
     String ssid[], pwd[];
     Button takeAttendance,manualAttendance,showAttendance;
@@ -29,6 +29,7 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        context=getApplicationContext();
         fileController=new FileController(context);
         Intent i = getIntent();
         Bundle b = i.getExtras();

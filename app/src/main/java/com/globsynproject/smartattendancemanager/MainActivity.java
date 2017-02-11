@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void goToTeacher(){
         fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
+        Message.toastMessage(getApplicationContext(),login,"");
         if(login.equals("teacher logged in")){
             DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
             bundle=dataBaseController.getPasswordAndSSID();
@@ -84,8 +85,11 @@ public class MainActivity extends AppCompatActivity {
         String login=fileController.check_loginFile();
         if(login.equals("student logged in")){
             String register=fileController.check_RegisterFle();
-            if(register.equals("not registered"))
-                intent=new Intent(MainActivity.this,StudentRegister.class);
+            Message.logMessages("MAIN: ","Logged in");
+            if(register.equals("not registered")) {
+                intent = new Intent(MainActivity.this, StudentRegister.class);
+                Message.logMessages("MAIN: ","Not Registered!");
+            }
             else{
                 String name=register.substring(0,register.indexOf(' '));
                 String pass=register.substring(register.indexOf(' ')+1);
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString(Constant.REGISTER_PASSWORD,pass);
                 intent=new Intent(MainActivity.this,StudentActivity.class);
                 intent.putExtras(bundle);
+                Message.toastMessage(getApplicationContext(),"Student Logged in and already registered","");
             }
         }
         else{

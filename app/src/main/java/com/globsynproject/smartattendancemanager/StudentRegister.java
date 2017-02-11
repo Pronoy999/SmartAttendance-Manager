@@ -11,11 +11,13 @@ public class StudentRegister extends AppCompatActivity {
     private EditText name;
     EditText password;
     private Button register;
-    FileController fileController=new FileController(getApplicationContext());
+    FileController fileController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
+
+        fileController=new FileController(getApplicationContext());
         name=(EditText) findViewById(R.id.name);
         password=(EditText) findViewById(R.id.roll);
         register=(Button) findViewById(R.id.register);
