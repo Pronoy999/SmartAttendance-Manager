@@ -83,7 +83,18 @@ public class MainActivity extends AppCompatActivity {
         fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
         if(login.equals("student logged in")){
-            intent=new Intent(MainActivity.this,StudentActivity.class);
+            String register=fileController.check_RegisterFle();
+            if(register.equals("not registered"))
+                intent=new Intent(MainActivity.this,StudentRegister.class);
+            else{
+                String name=register.substring(0,register.indexOf(' '));
+                String pass=register.substring(register.indexOf(' ')+1);
+                bundle=new Bundle();
+                bundle.putString(Constant.REGISTER_NAME,name);
+                bundle.putString(Constant.REGSITER_PASSWORD,pass);
+                intent=new Intent(MainActivity.this,StudentActivity.class);
+                intent.putExtras(bundle);
+            }
         }
         else{
             bundle=new Bundle();

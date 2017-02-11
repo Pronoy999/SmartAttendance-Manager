@@ -1,6 +1,7 @@
 package com.globsynproject.smartattendancemanager;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -103,6 +104,37 @@ public class FileController {
         }
         catch (FileNotFoundException e){
             return "not logged in";
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+        return text;
+    }
+    public void create_registerFile(String name,String roll){
+        try{
+            outputStreamWriter=new OutputStreamWriter(context.openFileOutput(Constant.REGISTER_FILE,Context.MODE_PRIVATE));
+            outputStreamWriter.write(name+",");
+            outputStreamWriter.write(roll+",");
+            outputStreamWriter.close();
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+    }
+    public String check_RegisterFle(){
+        String text="";
+        try{
+            FileInputStream fileInputStream=context.openFileInput(Constant.REGISTER_FILE);
+            Scanner scanner=new Scanner(fileInputStream);
+            scanner.useDelimiter(",");
+            while(scanner.hasNext()){
+                text+=scanner.next();
+            }
+            scanner.close();
+            fileInputStream.close();
+        }
+        catch (FileNotFoundException e){
+            return "not registered";
         }
         catch (Exception e){
             Message.logMessages("ERROR: ",e.toString());
