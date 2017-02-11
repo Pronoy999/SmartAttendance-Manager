@@ -27,4 +27,6 @@ public abstract class Constant {
     public static final String LOGIN_FILE="Login.dat";
     public static final String LOGIN_ACCOUNT="ACCOUNT";
     public static final String REGISTER_FILE="RegisterFile.dat";
+    public static final String REGISTER_NAME="name";
+    public static final String REGSITER_PASSWORD="password";
 }

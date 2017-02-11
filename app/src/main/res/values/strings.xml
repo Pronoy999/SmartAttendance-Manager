@@ -7,8 +7,5 @@
     <string name="get_attendance">Get Attendance</string>
     <string name="add_manually">Add Manually</string>
     <string name="view_attendance">View Attendance</string>
-    <string name="student_name">Enter name</string>
-    <string name="roll_number">Enter roll number</string>
-    <string name="register">Register</string>
-    <string name="give_attendance">Present</string>
+    <string name="give_attendance">Present!</string>
 </resources>
