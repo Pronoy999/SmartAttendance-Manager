@@ -47,6 +47,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //wifiController.turnAccessPointOff(wifiConfiguration);
+        if(wifiConfiguration!=null)
+            wifiController.turnAccessPointOff(wifiConfiguration);
     }
 }
