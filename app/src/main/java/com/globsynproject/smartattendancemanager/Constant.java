@@ -24,6 +24,6 @@ public abstract class Constant {
     public static final String SSID = "SSID";
     public static final String PASSWORD = "PASSWORD";
     public static final String FLAG="FLAG";
-    public static final String LOGIN_FILE="Login";
+    public static final String LOGIN_FILE="Login.dat";
     public static final String LOGIN_ACCOUNT="ACCOUNT";
 }
