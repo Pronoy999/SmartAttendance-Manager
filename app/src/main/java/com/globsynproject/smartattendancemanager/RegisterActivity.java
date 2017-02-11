@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(Constant.SSID, nameS);
                     values.put(Constant.BSSID, info.getSSID());
                     controller.disbandConnection();
+                    Message.logMessages("WIFI: ", "DISCONNECTED");
                     values.put(Constant.PASSWORD, rollS);
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
