@@ -34,4 +34,5 @@ public abstract class Constant {
     public static final String REGISTER_NAME="name";
     public static final String REGISTER_PASSWORD="password";
     public static final String REGISTER_FILE="Register.dat";
+    public static final int ID_PROGRESS_DIALOG= 1;
 }
