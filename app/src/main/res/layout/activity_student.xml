@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:text="@string/give_attendance"
             android:layout_weight="5"
-            />
+            android:id="@+id/present"/>
 
     </LinearLayout>
 </RelativeLayout>
