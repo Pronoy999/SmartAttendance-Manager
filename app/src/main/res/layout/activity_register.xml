@@ -42,7 +42,8 @@
         android:hint="@string/roll_number"
         android:inputType="number"
         android:fontFamily="casual"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:maxLength="11"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
