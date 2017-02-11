@@ -56,7 +56,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/register"
+        android:text="@string/register1"
         android:id="@+id/register"
         android:layout_weight="1"
         android:fontFamily="casual"

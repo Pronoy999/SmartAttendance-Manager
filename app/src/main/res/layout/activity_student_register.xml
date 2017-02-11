@@ -8,30 +8,47 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/back1"
     tools:context="com.globsynproject.smartattendancemanager.StudentRegister">
+
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/students1"
+            android:layout_weight="16"
+            android:padding="75sp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter name"
-            android:id="@+id/name"/>
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:id="@+id/name"
+            android:layout_weight=".5"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="enter roll"
-            android:id="@+id/roll"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="Enter roll number"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:id="@+id/roll"
+            android:inputType="number"
+            android:layout_weight=".5"
+            />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/register"
-                android:text="register"/>
-        </LinearLayout>
+                android:text="@string/register2"
+                android:textStyle="bold"
+                android:fontFamily="casual"
+                android:layout_weight=".5"
+            />
     </LinearLayout>
 </RelativeLayout>
