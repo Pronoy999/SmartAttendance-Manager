@@ -34,8 +34,14 @@
         <activity
             android:name=".TeacherActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ManualAttendance"
-            android:parentActivityName=".TeacherActivity"/>
+        <activity
+            android:name=".ManualAttendance"
+            android:parentActivityName=".TeacherActivity" />
+        <activity
+            android:name=".ViewAttendance"
+            android:parentActivityName=".TeacherActivity" />
+        <activity android:name=".StudentRegister"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
