@@ -41,7 +41,7 @@ public class StudentRegister extends AppCompatActivity {
         Intent intent=new Intent(StudentRegister.this,StudentActivity.class);
         Bundle bundle=new Bundle();
         bundle.putString(Constant.REGISTER_NAME,n);
-        bundle.putString(Constant.REGSITER_PASSWORD,r);
+        bundle.putString(Constant.REGISTER_PASSWORD,r);
         intent.putExtras(bundle);
         startActivity(intent);
     }

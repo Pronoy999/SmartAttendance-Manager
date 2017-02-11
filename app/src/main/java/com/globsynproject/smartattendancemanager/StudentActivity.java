@@ -39,7 +39,7 @@ public class StudentActivity extends AppCompatActivity {
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         String name=bundle.getString(Constant.REGISTER_NAME);
-        String password=bundle.getString(Constant.REGSITER_PASSWORD);
+        String password=bundle.getString(Constant.REGISTER_PASSWORD);
         wifiController=new WifiController(getApplicationContext());
         wifiConfiguration=wifiController.turnAccessPointOn(name,password);
     }
