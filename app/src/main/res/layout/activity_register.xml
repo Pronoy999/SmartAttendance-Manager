@@ -17,37 +17,40 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src=""/>
-    <TextView
+        android:layout_weight=".9"
+        android:src="@drawable/adduser"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:text="@string/student_name"/>
+        android:orientation="vertical"
+        android:layout_weight="1">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.2"
         android:id="@+id/name"
         android:inputType="text"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:text="@string/roll_number"
+        android:hint="@string/student_name"
+        android:textStyle="bold"
+        android:fontFamily="casual"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.2"
         android:id="@+id/roll"
-        android:inputType="number"/>
+        android:hint="@string/roll_number"
+        android:inputType="number"
+        android:fontFamily="casual"
+        android:textStyle="bold"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/register"
         android:id="@+id/register"
-        android:layout_weight="2"/>
+        android:layout_weight="1"
+        android:fontFamily="casual"
+        android:textStyle="bold"/>
+    </LinearLayout>
 </LinearLayout>
 </RelativeLayout>
