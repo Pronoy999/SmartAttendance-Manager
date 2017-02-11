@@ -51,8 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20sp">
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="match_parent"
@@ -67,8 +66,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/signup"
-                android:text="@string/signup"
+                android:id="@+id/register"
+                android:text="@string/register"
                 android:layout_weight="1"
                 android:fontFamily="casual"
                 android:textStyle="bold"
