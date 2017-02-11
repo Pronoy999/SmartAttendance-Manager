@@ -26,7 +26,8 @@ public abstract class Constant {
     public static final String FLAG="FLAG";
     public static final String LOGIN_FILE="Login.dat";
     public static final String LOGIN_ACCOUNT="ACCOUNT";
-    public static final String REGISTER_FILE="RegisterFile.dat";
+    public static final String BUNDLE_KEY_SSID = "SSID";
+    public static final String BUNDLE_KEY_PASSWORD = "KEYS";
     public static final String REGISTER_NAME="name";
     public static final String REGISTER_PASSWORD="password";
 }
