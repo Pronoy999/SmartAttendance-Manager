@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 String pass=register.substring(register.indexOf(' ')+1);
                 bundle=new Bundle();
                 bundle.putString(Constant.REGISTER_NAME,name);
-                bundle.putString(Constant.REGSITER_PASSWORD,pass);
+                bundle.putString(Constant.REGISTER_PASSWORD,pass);
                 intent=new Intent(MainActivity.this,StudentActivity.class);
                 intent.putExtras(bundle);
             }

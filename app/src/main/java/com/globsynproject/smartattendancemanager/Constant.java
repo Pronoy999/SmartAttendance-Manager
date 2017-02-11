@@ -30,4 +30,5 @@ public abstract class Constant {
     public static final String BUNDLE_KEY_PASSWORD = "KEYS";
     public static final String REGISTER_NAME="name";
     public static final String REGISTER_PASSWORD="password";
+    public static final String REGISTER_FILE="Register.dat";
 }
