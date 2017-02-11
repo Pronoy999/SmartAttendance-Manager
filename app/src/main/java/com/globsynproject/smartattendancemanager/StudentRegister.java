@@ -38,13 +38,18 @@ public class StudentRegister extends AppCompatActivity {
     private void register_File(){
         String n=name.getText().toString();
         String r=password.getText().toString();
-        fileController.create_registerFile(n,r);
-        Message.toastMessage(getApplicationContext(),"Successfully Registered!","");
-        Intent intent=new Intent(StudentRegister.this,StudentActivity.class);
-        Bundle bundle=new Bundle();
-        bundle.putString(Constant.REGISTER_NAME,n);
-        bundle.putString(Constant.REGISTER_PASSWORD,r);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if(r.length()>=8) {
+            fileController.create_registerFile(n, r);
+            Message.toastMessage(getApplicationContext(), "Successfully Registered!", "");
+            Intent intent = new Intent(StudentRegister.this, StudentActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.REGISTER_NAME, n);
+            bundle.putString(Constant.REGISTER_PASSWORD, r);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        else{
+            Message.toastMessage(getApplicationContext(),"Enter correct roll number!","long");
+        }
     }
 }
