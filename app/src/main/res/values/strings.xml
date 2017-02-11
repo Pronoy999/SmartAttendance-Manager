@@ -5,10 +5,12 @@
     <string name="enter_password">Enter the password:</string>
     <string name="signup">Sign Up</string>
     <string name="student_name">Name</string>
-    <string name="register">Register</string>
+    <string name="register">Complete Registration</string>
     <string name="roll_number">Roll Number</string>
     <string name="get_attendance">Get Attendance</string>
     <string name="add_manually">Add Manually</string>
     <string name="view_attendance">View Attendance</string>
     <string name="give_attendance">Present!</string>
+    <string name="add_student">Add Student</string>
+
 </resources>

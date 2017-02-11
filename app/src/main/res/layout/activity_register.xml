@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight=".75"
-        android:src="@drawable/adduser"
+        android:src="@drawable/adduser1"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.3"
+        android:layout_weight="1"
         android:id="@+id/name"
         android:inputType="text"
         android:hint="@string/student_name"
@@ -38,22 +38,29 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.3"
+        android:layout_weight="1"
         android:id="@+id/roll"
         android:hint="@string/roll_number"
         android:inputType="number"
         android:fontFamily="casual"
         android:textStyle="bold"
         android:maxLength="11"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/add_student"
+            android:id="@+id/addStudent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:textStyle="bold"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/register"
         android:id="@+id/register"
-        android:layout_weight="1.2"
+        android:layout_weight="1"
         android:fontFamily="casual"
-        android:textStyle="bold"
-        android:padding="30sp" />
+        android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
 </RelativeLayout>
