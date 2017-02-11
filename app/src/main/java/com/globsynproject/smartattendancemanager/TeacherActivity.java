@@ -32,8 +32,8 @@ public class TeacherActivity extends AppCompatActivity {
         fileController=new FileController(context);
         Intent i = getIntent();
         Bundle b = i.getExtras();
-        ssid = b.getStringArray("SSID");
-        pwd = b.getStringArray("KEYS");
+        ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
+        pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);
         n=ssid.length;
         controller = new WifiController(this);
         takeAttendance=(Button) findViewById(R.id.takeAttendance);
