@@ -61,18 +61,19 @@ public class MainActivity extends AppCompatActivity {
     private void goToTeacher(){
         fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
-        Message.toastMessage(getApplicationContext(),login,"");
         if(login.equals("teacher logged in")){
             DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
             bundle=dataBaseController.getPasswordAndSSID();
             intent=new Intent(MainActivity.this,TeacherActivity.class);
             intent.putExtras(bundle);
+            Message.toastMessage(getApplicationContext(),"Teacher logged in!","");
         }
         else {
             bundle=new Bundle();
             bundle.putString(Constant.LOGIN_ACCOUNT,"teacher");
             intent=new Intent(MainActivity.this,LoginActivity.class);
             intent.putExtras(bundle);
+            Message.toastMessage(getApplicationContext(),"Teacher not Logged in!","");
         }
         startActivity(intent);
     }
@@ -89,8 +90,10 @@ public class MainActivity extends AppCompatActivity {
             if(register.equals("not registered")) {
                 intent = new Intent(MainActivity.this, StudentRegister.class);
                 Message.logMessages("MAIN: ","Not Registered!");
+                Message.toastMessage(getApplicationContext(),"Student not registered!","");
             }
             else{
+                Message.logMessages("MAIN:",register);
                 String name=register.substring(0,register.indexOf(' '));
                 String pass=register.substring(register.indexOf(' ')+1);
                 bundle=new Bundle();
