@@ -110,6 +110,12 @@ public class FileController {
         }
         return text;
     }
+
+    /**
+     * NOTE: This is the method to create the register file for students.
+     * @param name: This receives the name of the student.
+     * @param roll: this receives the roll number of the student. This is inturn the password of the accesspoint.
+     */
     public void create_registerFile(String name,String roll){
         try{
             outputStreamWriter=new OutputStreamWriter(context.openFileOutput(Constant.REGISTER_FILE,Context.MODE_PRIVATE));
@@ -121,6 +127,11 @@ public class FileController {
             Message.logMessages("ERROR: ",e.toString());
         }
     }
+
+    /**
+     * NOTE: This is the method to check whether the student has already registered for the fist time name or password or not.
+     * @return: Returns the name and the roll number stored in the file. If File is not found returns "not registered".
+     */
     public String check_RegisterFle(){
         String text="";
         try{

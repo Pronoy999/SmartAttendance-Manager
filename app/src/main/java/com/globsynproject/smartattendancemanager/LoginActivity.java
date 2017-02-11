@@ -39,12 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void goToActivity(){
         if(account.equals("teacher")){
-            bundle=dataBaseController.getPasswordAndSSID();
-            intent=new Intent(LoginActivity.this,TeacherActivity.class);
-            intent.putExtras(bundle);
+            intent=new Intent(LoginActivity.this,RegisterActivity.class);
         }
         else if(account.equals("student")){
-            intent=new Intent(LoginActivity.this,StudentActivity.class);
+            intent=new Intent(LoginActivity.this,StudentRegister.class);
         }
         startActivity(intent);
         finish();

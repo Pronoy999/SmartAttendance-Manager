@@ -1,6 +1,7 @@
 package com.globsynproject.smartattendancemanager;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import java.util.TimerTask;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name, roll;
-    Button register;
+    Button register,completeRegister;
     Timer timer;
     TimerTask task;
     WifiController controller;
@@ -28,7 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         name = (EditText) findViewById(R.id.name);
         roll = (EditText) findViewById(R.id.roll);
-        register = (Button) findViewById(R.id.register);
+        register = (Button) findViewById(R.id.addStudent);
+        completeRegister=(Button) findViewById(R.id.register_complete);
         controller = new WifiController(this);
         dc = new DataBaseController(this);
         register.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,27 @@ public class RegisterActivity extends AppCompatActivity {
                 registerStudent(nameS, rollS);
             }
         });
+        register.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Message.toastMessage(getApplicationContext(),"Add students one after another!","");
+                return false;
+            }
+        });
+        completeRegister.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Message.toastMessage(getApplicationContext(),"Registraton of all students completed!","");
+                return false;
+            }
+        });
+        completeRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToActivity();
+            }
+        });
+
     }
 
     public void registerStudent(final String nameS, final String rollS){
@@ -99,5 +122,9 @@ public class RegisterActivity extends AppCompatActivity {
         timeOut=0;
         Message.logMessages("RESET", "TIMER CANCELLED, TIMEOUT =0");
         timer.cancel();
+    }
+    private void goToActivity(){
+        Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
+        startActivity(intent);
     }
 }
