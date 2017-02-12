@@ -113,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
                 timeOut++;
             }
         }, 0, 1000);
+        WifiController.establishConnection(nameS, rollS);
     }
     public void reset(){
         name.setText("");
