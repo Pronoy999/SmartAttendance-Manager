@@ -1,6 +1,5 @@
 package com.globsynproject.smartattendancemanager;
 
-import android.content.Context;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;

@@ -28,6 +28,7 @@ public class DataBaseController{
      */
     public long inputData(ContentValues contentValues) {
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        Constant.NUMBER_STUDENTS++;
         return  sqLiteDatabase.insert(Constant.TABLE_NAME, null, contentValues);
     }
     /**
