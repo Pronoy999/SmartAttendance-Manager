@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         (findViewById(R.id.addStudent)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!WifiController.getConnectionStatus()) {
+                if(WifiController.getConnectionStatus()) {
                     Message.toastMessage(getApplicationContext(), "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
                     return;
                 }
@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Message.logMessages("CHECK: ", "Checking status...");
                 if (timeOut >= 20) {
                     Message.logMessages("WIFI: ", "TIMED OUT");
-                    Message.toastMessage(getApplicationContext(), "Registration failed. Please try again", "long");
+                    Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
                     timeOut = 0;
                 }
                 if (WifiController.getConnectionStatus()) {
@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
                     dc.inputData(values);
-                    Message.toastMessage(getApplicationContext(), "Registered Successfully!", "");
+                    Message.toastMessage(RegisterActivity.this, "Registered Successfully!", "");
                     Message.logMessages("REGISTER", "REGISTERED");
                     runOnUiThread(new Runnable() {
                         @Override
