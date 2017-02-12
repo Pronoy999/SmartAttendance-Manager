@@ -4,40 +4,35 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class StudentRegister extends AppCompatActivity {
-    private EditText name;
-    EditText password;
-    private Button register;
-    FileController fileController;
+
+    static FileController fileController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
 
         fileController=new FileController(getApplicationContext());
-        name=(EditText) findViewById(R.id.name);
-        password=(EditText) findViewById(R.id.roll);
-        register=(Button) findViewById(R.id.register);
-        register.setOnLongClickListener(new View.OnLongClickListener() {
+        final EditText name=(EditText) findViewById(R.id.name);
+        final EditText password=(EditText) findViewById(R.id.roll);
+
+        findViewById(R.id.register).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Register","");
                 return false;
             }
         });
-        register.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register_File();
+                register_File(name.getText().toString(),password.getText().toString());
             }
         });
     }
-    private void register_File(){
-        String n=name.getText().toString();
-        String r=password.getText().toString();
+    private void register_File(String n,String r){
         if(r.length()>=8) {
             fileController.create_registerFile(n, r);
             Message.toastMessage(getApplicationContext(), "Successfully Registered!", "");

@@ -10,11 +10,6 @@ import android.widget.ImageView;
 
 /**This is the first activity to be displayed.*/
 public class MainActivity extends AppCompatActivity {
-    private ImageView teacher;
-    private ImageView student;
-    private Intent intent;
-    private Bundle bundle;
-    private FileController fileController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,28 +20,26 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivity(i);
             }
         }
-        teacher=(ImageView) findViewById(R.id.teacher);
-        student=(ImageView) findViewById(R.id.student);
-        teacher.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.teacher).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToTeacher();
             }
         });
-        teacher.setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.teacher).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Teacher's Login!","");
                 return false;
             }
         });
-        student.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.student).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToStudent();
             }
         });
-        student.setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.student).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Student's Login!","");
@@ -59,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
      * NOTE: This is the method to take the user to the teacher activity.
      */
     private void goToTeacher(){
-        fileController=new FileController(getApplicationContext());
+        Intent intent; Bundle bundle;
+        FileController fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
         if(login.equals("teacher logged in")){
             DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
@@ -82,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
      * NOTE: This is the method to take the user to the Student activity.
      */
     private void goToStudent(){
-        fileController=new FileController(getApplicationContext());
+        Intent intent;Bundle bundle;
+        FileController fileController=new FileController(getApplicationContext());
         String login=fileController.check_loginFile();
         if(login.equals("student logged in")){
             String register=fileController.check_RegisterFle();

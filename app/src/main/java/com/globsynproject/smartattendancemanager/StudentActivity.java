@@ -9,14 +9,13 @@ import android.widget.Button;
 
 /**This is the activity for the teacher to take the attendance.*/
 public class StudentActivity extends AppCompatActivity {
-    private Button button;
-    private WifiConfiguration wifiConfiguration;
-    private WifiController wifiController;
+    private static WifiConfiguration wifiConfiguration;
+    private static WifiController wifiController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-        button=(Button) findViewById(R.id.present);
+        Button button=(Button) findViewById(R.id.present);
         button.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
