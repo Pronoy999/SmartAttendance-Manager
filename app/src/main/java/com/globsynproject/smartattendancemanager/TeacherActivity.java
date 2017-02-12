@@ -72,6 +72,7 @@ public class TeacherActivity extends AppCompatActivity {
         });
     }
     public void startAttendance(){
+        Constant.CLASS_NUMBER++;
         if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED))){
             Message.toastMessage(this, "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
             return;
