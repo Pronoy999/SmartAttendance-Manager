@@ -4,33 +4,27 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
-    Button signup;
-    String account;
-    FileController fileController;
-    DataBaseController dataBaseController;
-    Intent intent;
-    Bundle bundle;
+
+    static String account;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fileController=new FileController(getApplicationContext());
-        dataBaseController=new DataBaseController(getApplicationContext());
-        signup=(Button) findViewById(R.id.signup);
-        Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
+
+        final FileController fileController=new FileController(getApplicationContext());
+        Bundle bundle=getIntent().getExtras();
         account=bundle.getString(Constant.LOGIN_ACCOUNT);
-        signup.setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.signup).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Enter the details!","");
                 return false;
             }
         });
-        signup.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fileController.create_loginFile(account);
@@ -40,13 +34,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     private void goToActivity(){
+        Intent intent=null;
         if(account.equals("teacher")){
             intent=new Intent(LoginActivity.this,RegisterActivity.class);
         }
         else if(account.equals("student")){
             intent=new Intent(LoginActivity.this,StudentRegister.class);
         }
-        startActivity(intent);
+        if(intent!=null)
+            startActivity(intent);
         finish();
     }
 }

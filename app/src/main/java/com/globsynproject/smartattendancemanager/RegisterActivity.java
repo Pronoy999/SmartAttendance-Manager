@@ -1,8 +1,10 @@
 package com.globsynproject.smartattendancemanager;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,12 +18,11 @@ import java.util.TimerTask;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name, roll;
-    Button register,completeRegister;
-    Timer timer;
-    TimerTask task;
-    WifiController controller;
-    int timeOut=0;
+    static Timer timer;
+
+    static int timeOut=0;
     DataBaseController dc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +30,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         name = (EditText) findViewById(R.id.name);
         roll = (EditText) findViewById(R.id.roll);
-        register = (Button) findViewById(R.id.addStudent);
-        completeRegister=(Button) findViewById(R.id.register_complete);
-        controller = new WifiController(this);
+        WifiController.wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         dc = new DataBaseController(this);
-        register.setOnClickListener(new View.OnClickListener() {
+        (findViewById(R.id.addStudent)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!controller.getConnectionStatus()) {
+                if(WifiController.getConnectionStatus()) {
                     Message.toastMessage(getApplicationContext(), "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
                     return;
                 }
@@ -53,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                 registerStudent(nameS, rollS);
             }
         });
-        register.setOnLongClickListener(new View.OnLongClickListener() {
+        /*register.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Add students one after another!","");
@@ -66,8 +65,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Message.toastMessage(getApplicationContext(),"Registraton of all students completed!","");
                 return false;
             }
-        });
-        completeRegister.setOnClickListener(new View.OnClickListener() {
+        });*/
+        findViewById(R.id.register_complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToActivity();
@@ -78,30 +77,31 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void registerStudent(final String nameS, final String rollS){
         timer = new Timer();
-        task = new TimerTask() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Message.logMessages("CHECK: ", "Checking status...");
                 if (timeOut >= 20) {
                     Message.logMessages("WIFI: ", "TIMED OUT");
-                    Message.toastMessage(getApplicationContext(), "Registration failed. Please try again", "long");
+                    Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
                     timeOut = 0;
+                    timer.cancel();
                 }
-                if (controller.getConnectionStatus()) {
+                if (WifiController.getConnectionStatus()) {
                     Message.logMessages("WIFI: ", "CONNECTED");
                     ContentValues values = new ContentValues();
                     values.put(Constant.NAME, nameS);
                     values.put(Constant.ROLL_NUMBER, rollS);
-                    WifiInfo info = controller.wifiManager.getConnectionInfo();
+                    WifiInfo info = WifiController.wifiManager.getConnectionInfo();
                     values.put(Constant.SSID, nameS);
                     values.put(Constant.BSSID, info.getSSID());
-                    controller.disbandConnection();
+                    WifiController.disbandConnection();
                     Message.logMessages("WIFI: ", "DISCONNECTED");
                     values.put(Constant.PASSWORD, rollS);
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
                     dc.inputData(values);
-                    Message.toastMessage(getApplicationContext(), "Registered Successfully!", "");
+                    Message.toastMessage(RegisterActivity.this, "Registered Successfully!", "");
                     Message.logMessages("REGISTER", "REGISTERED");
                     runOnUiThread(new Runnable() {
                         @Override
@@ -113,8 +113,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 timeOut++;
             }
-        };
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        }, 0, 1000);
+        WifiController.establishConnection(nameS, rollS);
     }
     public void reset(){
         name.setText("");
