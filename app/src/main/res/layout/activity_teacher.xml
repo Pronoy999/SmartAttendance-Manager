@@ -23,13 +23,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_manually"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:id="@+id/manualAttendance" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/view_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
