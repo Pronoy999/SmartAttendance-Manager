@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Message.logMessages("WIFI: ", "TIMED OUT");
                     Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
                     timeOut = 0;
+                    timer.cancel();
                 }
                 if (WifiController.getConnectionStatus()) {
                     Message.logMessages("WIFI: ", "CONNECTED");
