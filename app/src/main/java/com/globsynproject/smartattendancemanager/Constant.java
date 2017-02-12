@@ -36,4 +36,5 @@ public abstract class Constant {
     public static final String REGISTER_FILE="Register.dat";
     public static final int ID_PROGRESS_DIALOG= 1;
     public static final String STUDENT_NUMBER_FILE="NumberStudents.dat";
+    public static String getList[]=new String[NUMBER_STUDENTS];
 }
