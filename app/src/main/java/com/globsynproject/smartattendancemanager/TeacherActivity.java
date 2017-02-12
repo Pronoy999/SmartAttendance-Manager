@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class TeacherActivity extends AppCompatActivity {
     static ProgressDialog progressDialog;
     static Timer timer;
-    FileController fileController;
+    static FileController fileController;
     static String ssid[], pwd[];
     Button manualAttendance, showAttendance;
     static int timeOut = 0, position =0;
