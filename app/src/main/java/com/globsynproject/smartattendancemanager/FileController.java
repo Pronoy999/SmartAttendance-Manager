@@ -1,7 +1,6 @@
 package com.globsynproject.smartattendancemanager;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -67,7 +66,7 @@ public class FileController {
     }
 
     /**
-     * NOTE: This is the method to delete the file.
+     * NOTE: This is the method to delete the Login temporary attendance file.
      */
     public void delete_File(){
         context.deleteFile(Constant.FILE_NAME);

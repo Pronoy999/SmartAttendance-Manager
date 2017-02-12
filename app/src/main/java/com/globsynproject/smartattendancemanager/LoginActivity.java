@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         final FileController fileController=new FileController(getApplicationContext());
         Bundle bundle=getIntent().getExtras();
         account=bundle.getString(Constant.LOGIN_ACCOUNT);
