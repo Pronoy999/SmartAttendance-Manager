@@ -57,8 +57,8 @@ public class WifiController {
      */
     public static boolean establishConnection(String _SSID, String _key){
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
-        wifiConfiguration.SSID = _SSID;
-        wifiConfiguration.preSharedKey = _key;
+        wifiConfiguration.SSID = "\""+_SSID+"\"";
+        wifiConfiguration.preSharedKey = "\""+_key+"\"";
         wifiConfiguration.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);

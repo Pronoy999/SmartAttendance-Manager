@@ -19,7 +19,7 @@ public abstract class Constant {
     public static final String UID = "_id";
     public static final String NAME = "Name";
     public static final String BSSID = "BSSID";
-    public static final String ROLL_NUMBER = "ROLL NUMBER";
+    public static final String ROLL_NUMBER = "ROLL_NUMBER";
     public static final String ATTENDANCE = "ATTENDANCE";
     public static final String SSID = "SSID";
     public static final String PASSWORD = "PASSWORD";

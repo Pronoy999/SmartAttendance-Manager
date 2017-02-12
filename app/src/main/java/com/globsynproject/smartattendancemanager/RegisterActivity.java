@@ -83,7 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Message.logMessages("CHECK: ", "Checking status...");
                 if (timeOut >= 20) {
                     Message.logMessages("WIFI: ", "TIMED OUT");
-                    Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
+                        }
+                    });
                     timeOut = 0;
                     timer.cancel();
                 }
@@ -101,7 +106,12 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
                     dc.inputData(values);
-                    Message.toastMessage(RegisterActivity.this, "Registered Successfully!", "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message.toastMessage(RegisterActivity.this, "REGISTERED SUCCESSFULLY!", "long");
+                        }
+                    });
                     Message.logMessages("REGISTER", "REGISTERED");
                     runOnUiThread(new Runnable() {
                         @Override
