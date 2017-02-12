@@ -23,7 +23,9 @@
             android:inputType="text"
             android:hint="@string/student_name"
             android:textStyle="bold"
-            android:fontFamily="casual" />
+            android:fontFamily="casual" >
+            <requestFocus/>
+        </EditText>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

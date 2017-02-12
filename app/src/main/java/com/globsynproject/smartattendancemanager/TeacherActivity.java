@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class TeacherActivity extends AppCompatActivity {
     static ProgressDialog progressDialog;
     static Timer timer;
-    static FileController fileController;
+    FileController fileController;
     static String ssid[], pwd[];
     Button manualAttendance, showAttendance;
     static int timeOut = 0, position =0;
@@ -30,6 +30,7 @@ public class TeacherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher);
 
         fileController=new FileController(this);
+        Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
         Bundle b = getIntent().getExtras();
         ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
         pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);
@@ -72,6 +73,7 @@ public class TeacherActivity extends AppCompatActivity {
         });
     }
     public void startAttendance(){
+        Constant.CLASS_NUMBER++;
         if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED))){
             Message.toastMessage(this, "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
             return;

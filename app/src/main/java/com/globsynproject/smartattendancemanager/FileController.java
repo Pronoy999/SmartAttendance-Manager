@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 
 public class FileController {
-    private Context context;
+    private final Context context;
     private static OutputStreamWriter outputStreamWriter;
     /**
      * NOTE: Pass the context as the parameter for creating the objects of this class
@@ -152,5 +152,44 @@ public class FileController {
             Message.logMessages("ERROR: ",e.toString());
         }
         return text;
+    }
+
+    /**
+     * NOTE: This is the method to save the number of students in the file.
+     * @param number: CONSTANT.NUMBER_STUDENTS.
+     */
+    public void backup_StudentNumber(int number){
+        try {
+            outputStreamWriter = new OutputStreamWriter(context.openFileOutput(Constant.STUDENT_NUMBER_FILE, Context.MODE_PRIVATE));
+            outputStreamWriter.write(number+",");
+            outputStreamWriter.close();
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+    }
+
+    /**
+     * NOTE: This is the method to update the NUMBER_STUDENTS.
+     * @return: NUMBER OF STUDENTS from file.
+     */
+    public int updateStudent_Number(){
+        String num="";
+        try{
+            FileInputStream fileInputStream=new FileInputStream(Constant.STUDENT_NUMBER_FILE);
+            Scanner scanner=new Scanner(fileInputStream);
+            scanner.useDelimiter(",");
+            while(scanner.hasNext())
+                num+=scanner.next();
+            scanner.close();
+            fileInputStream.close();
+        }
+        catch (FileNotFoundException e){
+            Message.logMessages("ERROR: ","FILE NOT FOUND!");
+        }
+        catch (Exception e){
+            Message.logMessages("ERROR: ",e.toString());
+        }
+        return Integer.parseInt(num);
     }
 }

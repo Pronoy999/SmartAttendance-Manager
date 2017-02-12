@@ -8,7 +8,6 @@ import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Timer;
@@ -17,11 +16,12 @@ import java.util.TimerTask;
 /**This is the activity to register the new student database.*/
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText name, roll;
-    static Timer timer;
+    private EditText name;
+    private EditText roll;
+    private static Timer timer;
 
-    static int timeOut=0;
-    DataBaseController dc;
+    private static int timeOut=0;
+    private DataBaseController dc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void registerStudent(final String nameS, final String rollS){
+    private void registerStudent(final String nameS, final String rollS){
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -83,7 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Message.logMessages("CHECK: ", "Checking status...");
                 if (timeOut >= 20) {
                     Message.logMessages("WIFI: ", "TIMED OUT");
-                    Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
+                        }
+                    });
                     timeOut = 0;
                     timer.cancel();
                 }
@@ -101,7 +106,12 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
                     dc.inputData(values);
-                    Message.toastMessage(RegisterActivity.this, "Registered Successfully!", "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message.toastMessage(RegisterActivity.this, "REGISTERED SUCCESSFULLY!", "long");
+                        }
+                    });
                     Message.logMessages("REGISTER", "REGISTERED");
                     runOnUiThread(new Runnable() {
                         @Override
@@ -116,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
         }, 0, 1000);
         WifiController.establishConnection(nameS, rollS);
     }
-    public void reset(){
+    private void reset(){
         name.setText("");
         roll.setText("");
         timeOut=0;
@@ -125,8 +135,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void goToActivity(){
         Bundle bundle;
+        FileController fileController=new FileController(getApplicationContext());
         DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
         bundle=dataBaseController.getPasswordAndSSID();
+        fileController.backup_StudentNumber(Constant.NUMBER_STUDENTS);
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);

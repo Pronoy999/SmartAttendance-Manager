@@ -19,7 +19,7 @@ public abstract class Constant {
     public static final String UID = "_id";
     public static final String NAME = "Name";
     public static final String BSSID = "BSSID";
-    public static final String ROLL_NUMBER = "ROLL NUMBER";
+    public static final String ROLL_NUMBER = "ROLL_NUMBER";
     public static final String ATTENDANCE = "ATTENDANCE";
     public static final String SSID = "SSID";
     public static final String PASSWORD = "PASSWORD";
@@ -35,4 +35,6 @@ public abstract class Constant {
     public static final String REGISTER_PASSWORD="password";
     public static final String REGISTER_FILE="Register.dat";
     public static final int ID_PROGRESS_DIALOG= 1;
+    public static final String STUDENT_NUMBER_FILE="NumberStudents.dat";
+    public static String getList[]=new String[NUMBER_STUDENTS];
 }
