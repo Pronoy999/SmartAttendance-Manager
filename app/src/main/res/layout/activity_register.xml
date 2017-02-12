@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/back1"
-    tools:context="com.globsynproject.smartattendancemanager.RegisterActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".75"
-        android:src="@drawable/adduser1"
-        />
+    android:background="@drawable/back1">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/name"
-        android:inputType="text"
-        android:hint="@string/student_name"
-        android:textStyle="bold"
-        android:fontFamily="casual"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/roll"
-        android:hint="@string/roll_number"
-        android:inputType="number"
-        android:fontFamily="casual"
-        android:textStyle="bold"
-        android:maxLength="11"/>
+        android:padding="30sp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".75"
+            android:src="@drawable/adduser1"
+            android:padding="30sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/name"
+            android:inputType="text"
+            android:hint="@string/student_name"
+            android:textStyle="bold"
+            android:fontFamily="casual" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/roll"
+            android:hint="@string/roll_number"
+            android:inputType="number"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:maxLength="11"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,14 +44,13 @@
             android:layout_weight="1"
             android:fontFamily="casual"
             android:textStyle="bold"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/register1"
-        android:id="@+id/register_complete"
-        android:layout_weight="1"
-        android:fontFamily="casual"
-        android:textStyle="bold" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/register1"
+            android:id="@+id/register_complete"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:textStyle="bold" />
     </LinearLayout>
-</LinearLayout>
-</RelativeLayout>
+</ScrollView>

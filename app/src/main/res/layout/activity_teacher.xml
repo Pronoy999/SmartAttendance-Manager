@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_teacher"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/back1"
-    tools:context="com.globsynproject.smartattendancemanager.TeacherActivity">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_teacher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:layout_weight="1">
+        android:background="@drawable/back1">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/teacherlogin"
-            android:padding="50sp"/>
-
+            android:padding="50sp"
+            android:layout_weight="2"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/get_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:id="@+id/takeAttendance"
-            android:layout_weight="3"/>
+            android:layout_weight="4"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/add_manually"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:id="@+id/manualAttendance"
-            android:layout_weight="3"/>
+            android:layout_weight="4"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/view_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:id="@+id/showAttendance"
-            android:layout_weight="3" />
-        </LinearLayout>
+            android:layout_weight="4" />
+</LinearLayout>
 
-</RelativeLayout>
 
