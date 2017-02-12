@@ -6,21 +6,19 @@
     android:background="@drawable/back1">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:padding="30sp">
+        android:layout_gravity="center"
+        android:padding="40sp">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".75"
+            android:layout_height="wrap_content"
             android:src="@drawable/adduser1"
             android:padding="30sp"/>
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:id="@+id/name"
             android:inputType="text"
             android:hint="@string/student_name"
@@ -28,8 +26,7 @@
             android:fontFamily="casual" />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:id="@+id/roll"
             android:hint="@string/roll_number"
             android:inputType="number"
@@ -38,18 +35,16 @@
             android:maxLength="11"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/add_student"
             android:id="@+id/addStudent"
-            android:layout_weight="1"
             android:fontFamily="casual"
             android:textStyle="bold"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/register1"
             android:id="@+id/register_complete"
-            android:layout_weight="1"
             android:fontFamily="casual"
             android:textStyle="bold" />
     </LinearLayout>
