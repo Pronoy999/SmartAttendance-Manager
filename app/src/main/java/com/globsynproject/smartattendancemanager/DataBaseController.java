@@ -45,8 +45,8 @@ public class DataBaseController{
         Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns,
                 null, null, null, null, null);
         while (cursor.moveToNext()){
-            ssid[i]=cursor.getString(cursor.getColumnIndex(Constant.SSID));
-            password[i]=cursor.getString(cursor.getColumnIndex(Constant.PASSWORD));
+            ssid[i]=cursor.getString(3);
+            password[i]=cursor.getString(5);
             i++;
         }
         cursor.close();

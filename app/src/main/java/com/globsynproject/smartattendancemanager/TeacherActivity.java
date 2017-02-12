@@ -30,7 +30,8 @@ public class TeacherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher);
 
         fileController=new FileController(this);
-        Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
+
+        //Message.toastMessage(getApplicationContext(),Constant.NUMBER_STUDENTS+"","");
         Bundle b = getIntent().getExtras();
         ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
         pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);

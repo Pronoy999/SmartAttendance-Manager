@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void goToTeacher(){
         Intent intent; Bundle bundle;
         FileController fileController=new FileController(getApplicationContext());
+        Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
         String login=fileController.check_loginFile();
         if(login.equals("teacher logged in")){
             DataBaseController dataBaseController=new DataBaseController(getApplicationContext());

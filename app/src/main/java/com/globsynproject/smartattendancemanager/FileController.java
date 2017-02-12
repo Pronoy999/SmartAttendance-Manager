@@ -163,6 +163,7 @@ public class FileController {
             outputStreamWriter = new OutputStreamWriter(context.openFileOutput(Constant.STUDENT_NUMBER_FILE, Context.MODE_PRIVATE));
             outputStreamWriter.write(number+",");
             outputStreamWriter.close();
+            Message.logMessages("ERROR: ",number+"");
         }
         catch (Exception e){
             Message.logMessages("ERROR: ",e.toString());
@@ -174,15 +175,16 @@ public class FileController {
      * @return: NUMBER OF STUDENTS from file.
      */
     public int updateStudent_Number(){
-        String num="";
+        String num="0";
         try{
             FileInputStream fileInputStream=new FileInputStream(Constant.STUDENT_NUMBER_FILE);
             Scanner scanner=new Scanner(fileInputStream);
             scanner.useDelimiter(",");
             while(scanner.hasNext())
-                num+=scanner.next();
+                num=scanner.next();
             scanner.close();
             fileInputStream.close();
+            Message.logMessages("FILE: ",num);
         }
         catch (FileNotFoundException e){
             Message.logMessages("ERROR: ","FILE NOT FOUND!");
