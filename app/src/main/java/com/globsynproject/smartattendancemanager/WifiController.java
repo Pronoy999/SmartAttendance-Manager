@@ -16,22 +16,13 @@ public class WifiController {
     /**
      * WifiManager object that manages ALL wifi related functionality.
      */
-    WifiManager wifiManager;
-
-    /**
-     * Constructor.
-     * Initializes WifiManager Object.
-     * @param context reference to calling object.
-     */
-    WifiController(Context context){
-        wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-    }
+    static WifiManager wifiManager;
 
     /**
      * Checks whether the WiFi is ON or not.
      * @return boolean: true if WiFi is ON, else false.
      */
-    public boolean checkWifiOn(){
+    public static boolean checkWifiOn(){
         return wifiManager.isWifiEnabled();
     }
 
@@ -39,14 +30,14 @@ public class WifiController {
      * Checks whether the phone is connected to any WiFi network or not.
      * @return boolean: true if connected to a network, else false.
      */
-    public boolean getConnectionStatus(){
+    public static boolean getConnectionStatus(){
         return wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED);
     }
     /**
      * Turns wifi ON.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public boolean turnWifiOn(){
+    public static boolean turnWifiOn(){
         return wifiManager.setWifiEnabled(true);
     }
 
@@ -54,7 +45,7 @@ public class WifiController {
      * Turns wifi OFF.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public boolean turnWifiOff(){
+    public static boolean turnWifiOff(){
         return wifiManager.setWifiEnabled(false);
     }
 
@@ -64,7 +55,7 @@ public class WifiController {
      * @param _key The Password of the connection to be connected to.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public boolean establishConnection(String _SSID, String _key){
+    public static boolean establishConnection(String _SSID, String _key){
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
         wifiConfiguration.SSID = _SSID;
         wifiConfiguration.preSharedKey = _key;
@@ -79,7 +70,7 @@ public class WifiController {
      * Disconnects from the connection presently connected to and removes it from the list of networks.
      * @return boolean: true if network is disconnected AND removed, else false.
      */
-    public boolean disbandConnection(){
+    public static boolean disbandConnection(){
         WifiInfo info = wifiManager.getConnectionInfo();
         int id =info.getNetworkId();
         return wifiManager.disableNetwork(id) && wifiManager.removeNetwork(id);
@@ -91,7 +82,7 @@ public class WifiController {
      * @param password The password of the access point that is to be made.
      * @return WifiConfiguration: The object of WifiConfiguration that holds the settings of the previous access point (to be used to revert back to old settings when access point is turned off).
      */
-    public WifiConfiguration turnAccessPointOn(String name, String password){
+    public static WifiConfiguration turnAccessPointOn(String name, String password){
         /*if(!Settings.System.canWrite(context)){
             Intent i = new Intent().setAction(Settings.ACTION_MANAGE_WRITE_SETTINGS);
             context.startActivity(i);
@@ -121,7 +112,7 @@ public class WifiController {
      * Turns access point off, reverting back to old settings of the user.
      * @param prev_config The previous access point configuration of the user to be set to.
      */
-    public void turnAccessPointOff(WifiConfiguration prev_config){
+    public static void turnAccessPointOff(WifiConfiguration prev_config){
         try {
             if(!(boolean)wifiManager.getClass().getMethod("isWifiApEnabled").invoke(wifiManager))
                 return;
