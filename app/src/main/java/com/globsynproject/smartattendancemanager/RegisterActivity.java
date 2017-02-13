@@ -56,13 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
                 registerStudent(nameS, rollS);
             }
         });
-        /*findViewById(R.id.register).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Message.toastMessage(getApplicationContext(),"Add students one after another!","");
-                return false;
-            }
-        });*/
         findViewById(R.id.register_complete).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
