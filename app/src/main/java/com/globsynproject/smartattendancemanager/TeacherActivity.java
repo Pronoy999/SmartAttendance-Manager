@@ -2,11 +2,8 @@ package com.globsynproject.smartattendancemanager;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -61,7 +58,7 @@ public class TeacherActivity extends AppCompatActivity {
         showAbsent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AbsentLIst.class));
+                startActivity(new Intent(getApplicationContext(), AbsentList.class));
             }
         });
     }

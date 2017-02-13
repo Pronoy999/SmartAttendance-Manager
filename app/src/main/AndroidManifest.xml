@@ -41,7 +41,7 @@
             android:name=".StudentRegister"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".PresentList" />
-        <activity android:name=".AbsentLIst"></activity>
+        <activity android:name=".AbsentList"></activity>
     </application>
 
 </manifest>

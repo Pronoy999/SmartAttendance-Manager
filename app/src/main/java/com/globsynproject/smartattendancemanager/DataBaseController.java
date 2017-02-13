@@ -84,6 +84,12 @@ public class DataBaseController{
         String[] whereArgs = {bssid};
         return sqLiteDatabase.update(Constant.TABLE_NAME,contentValues,Constant.BSSID+"=?",whereArgs);
     }
+
+    /**
+     * This method puts the attendance by roll number. This is done when the teacher puts the attendance manually after viewing the list of absent students.
+     * @param roll : Roll number of the student the teacher has marked present manually
+     * @return returns the row id of the row where the change is bering done
+     */
     public long putAttendanceByRoll(String roll){
         int attendance=0;
         SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
@@ -151,7 +157,7 @@ public class DataBaseController{
         do {
             if(cursor.getInt(7)==1)//column index of CONSTANT.FLAG is 7
             {
-                Constant.getList[i]=cursor.getString(2)+" "//ROLL
+                Constant.presentListArray[i]=cursor.getString(2)+" "//ROLL
                         +cursor.getString(1)+" "//NAME
                         +cursor.getInt(6)+" ";//ATTENDANCE
 //                names[i]=cursor.getString(1);//column index of CONSTANT.NAME is 1
@@ -180,7 +186,7 @@ public class DataBaseController{
         do {
             if(cursor.getInt(7)==0)//column index of CONSTANT.FLAG is 7
             {
-                Constant.getList1[i]=cursor.getString(2)+" "  //ROLL
+                Constant.absentListArray[i]=cursor.getString(2)+" "  //ROLL
                         +cursor.getString(1)+" "//NAME
                         +cursor.getInt(6)+" ";//ATTENDANCE
 //                names[i]=cursor.getString(1);//column index of CONSTANT.NAME is 1
