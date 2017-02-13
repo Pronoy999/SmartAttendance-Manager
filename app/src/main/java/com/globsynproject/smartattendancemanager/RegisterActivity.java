@@ -1,7 +1,10 @@
 package com.globsynproject.smartattendancemanager;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -19,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText name;
     private EditText roll;
     private static Timer timer;
-
+    static ProgressDialog progressDialog;
     private static int timeOut=0;
     private DataBaseController dc;
 
@@ -35,8 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
         (findViewById(R.id.addStudent)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(WifiController.getConnectionStatus()) {
-                    Message.toastMessage(getApplicationContext(), "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
+                if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.getConnectionStatus())){
+                    Message.toastMessage(getApplicationContext(), Constant.WIFI_NOT_READY_MESSAGE, "long");
                     return;
                 }
                 String nameS = name.getText().toString();
@@ -49,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Message.toastMessage(getApplicationContext(), "The Roll Number MUST be at least 8 digits long", "");
                     return;
                 }
+                showDialog(Constant.ID_PROGRESS_DIALOG);
                 registerStudent(nameS, rollS);
             }
         });
@@ -86,9 +90,10 @@ public class RegisterActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Message.toastMessage(RegisterActivity.this, "Registration failed. Please try again", "long");
+                            Message.toastMessage(RegisterActivity.this, Constant.REGISTER_FAILED_MESSAGE, "long");
                         }
                     });
+                    progressDialog.dismiss();
                     timeOut = 0;
                     timer.cancel();
                 }
@@ -109,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Message.toastMessage(RegisterActivity.this, "REGISTERED SUCCESSFULLY!", "long");
+                            Message.toastMessage(RegisterActivity.this, Constant.REGISTER_SUCCESSFUL_MESSAGE, "long");
                         }
                     });
                     Message.logMessages("REGISTER", "REGISTERED");
@@ -119,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                             reset();
                         }
                     });
+                    progressDialog.dismiss();
                     return;
                 }
                 timeOut++;
@@ -138,9 +144,36 @@ public class RegisterActivity extends AppCompatActivity {
         FileController fileController=new FileController(getApplicationContext());
         DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
         fileController.backup_StudentNumber(Constant.NUMBER_STUDENTS);
+        Constant.getList = new String[Constant.NUMBER_STUDENTS];
+        Constant.getList1 = new String[Constant.NUMBER_STUDENTS];
         bundle=dataBaseController.getPasswordAndSSID();
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        goToActivity();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        progressDialog = new ProgressDialog(this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Registering...");
+        progressDialog.setIcon(R.drawable.icon);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                timer.cancel();
+                timeOut=0;
+                progressDialog.dismiss();
+                Message.toastMessage(getApplicationContext(), Constant.REGISTER_CANCEL_MESSAGE, "");
+            }
+        });
+        progressDialog.setCancelable(false);
+        return progressDialog;
     }
 }

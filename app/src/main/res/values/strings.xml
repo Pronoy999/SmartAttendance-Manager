@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">Smart Attendance Manager</string>
-    <string name="choose_profile">Choose your profile:</string>
-    <string name="enter_name">Enter the username:</string>
-    <string name="enter_password">Enter the password:</string>
+    <string name="choose_profile">Choose your profile</string>
+    <string name="enter_name">Enter username</string>
+    <string name="enter_password">Enter password</string>
     <string name="signup">Sign Up</string>
     <string name="student_name">Name</string>
     <string name="register">Register</string>
     <string name="roll_number">Roll Number</string>
     <string name="get_attendance">Get Attendance</string>
     <string name="add_manually">Add Manually</string>
-    <string name="view_attendance">View Attendance</string>
+    <string name="get_absent_list">See absent list</string>
+    <string name="get_present_list">See present list</string>
     <string name="give_attendance">Present!</string>
     <string name="add_student">Add Student</string>
     <string name="register1">Complete Registration</string>

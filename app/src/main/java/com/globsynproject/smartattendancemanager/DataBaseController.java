@@ -180,7 +180,7 @@ public class DataBaseController{
         do {
             if(cursor.getInt(7)==0)//column index of CONSTANT.FLAG is 7
             {
-                Constant.getList[i]=cursor.getString(2)+" "  //ROLL
+                Constant.getList1[i]=cursor.getString(2)+" "  //ROLL
                         +cursor.getString(1)+" "//NAME
                         +cursor.getInt(6)+" ";//ATTENDANCE
 //                names[i]=cursor.getString(1);//column index of CONSTANT.NAME is 1

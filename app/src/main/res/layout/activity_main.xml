@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/activity_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/activity_main"
             android:background="@drawable/back1"
-            >
+            android:layout_gravity="center">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
                 android:fontFamily="casual"/>
             <ImageView
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="228sp"
                android:id="@+id/teacher"
                android:src="@drawable/teacher"
                android:clickable="true"
@@ -28,7 +28,7 @@
                android:contentDescription="@string/app_name"/>
             <ImageView
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="228sp"
                android:id="@+id/student"
                android:src="@drawable/student"
                android:clickable="true"

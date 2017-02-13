@@ -5,37 +5,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/back1">
+        android:background="@drawable/back1"
+        android:layout_gravity="center"
+        android:padding="40sp">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:src="@drawable/teacherlogin"
-            android:padding="50sp"
-            android:layout_weight="2"/>
+            android:padding="75sp" />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/get_attendance"
             android:textStyle="bold"
             android:fontFamily="casual"
-            android:id="@+id/takeAttendance"
-            android:layout_weight="4"/>
+            android:id="@+id/takeAttendance" />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/add_manually"
-            android:textStyle="bold"
-            android:fontFamily="casual"
+            android:layout_height="wrap_content"
             android:id="@+id/manualAttendance"
-            android:layout_weight="4"/>
+            android:text="@string/get_absent_list"
+            android:textStyle="bold"
+            android:fontFamily="casual"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/view_attendance"
+            android:layout_height="wrap_content"
+            android:text="@string/get_present_list"
             android:textStyle="bold"
             android:fontFamily="casual"
-            android:id="@+id/showAttendance"
-            android:layout_weight="4" />
+            android:id="@+id/showAttendance" />
 </LinearLayout>
 
 

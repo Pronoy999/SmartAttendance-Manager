@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -63,7 +64,7 @@ public class TeacherActivity extends AppCompatActivity {
             }
         });*/
         if(WifiController.getConnectionStatus()){
-            Message.toastMessage(getApplicationContext(),"Before pressing the button, please switch on WiFi and remain disconnected from ALL networks.", "long");
+            Message.toastMessage(getApplicationContext(),Constant.WIFI_WARNING_MESSAGE, "long");
             return;
         }
         findViewById(R.id.takeAttendance).setOnClickListener(new View.OnClickListener() {
@@ -74,11 +75,11 @@ public class TeacherActivity extends AppCompatActivity {
         });
     }
     public void startAttendance(){
-        Constant.CLASS_NUMBER++;
-        if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED))){
-            Message.toastMessage(this, "Please switch on WiFi and remain disconnected from ALL networks to proceed.", "long");
+        if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.getConnectionStatus())){
+            Message.toastMessage(getApplicationContext(), Constant.WIFI_NOT_READY_MESSAGE, "long");
             return;
         }
+        Constant.CLASS_NUMBER++;
         showDialog(Constant.ID_PROGRESS_DIALOG);
         startNewConnection(position);
         timer = new Timer();
