@@ -37,7 +37,7 @@ public class StudentActivity extends AppCompatActivity {
      * NOTE: This is the method to give the attendance.
      */
     private void giveAttendance(){
-        Bundle bundle=getIntent().getExtras();
+        Bundle bundle=getIntent().getExtras();//
         String name=bundle.getString(Constant.REGISTER_NAME);
         String password=bundle.getString(Constant.REGISTER_PASSWORD);
         wifiConfiguration=WifiController.turnAccessPointOn(name,password);
