@@ -118,9 +118,14 @@ public class TeacherActivity extends AppCompatActivity {
             WifiController.turnWifiOff();
             position=0; timeOut=0;
             fileController.sendAttendance();
-            Message.toastMessage(getApplicationContext(),"Attendance taken!","");
-            showAttendance.setVisibility(View.VISIBLE);
-            manualAttendance.setVisibility(View.VISIBLE);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Message.toastMessage(getApplicationContext(),"Attendance taken!","");
+                    showAttendance.setVisibility(View.VISIBLE);
+                    manualAttendance.setVisibility(View.VISIBLE);
+                }
+            });
             return;
         }
         Message.logMessages("WIFI", "Setting up connection: "+ssid[pos]+", "+pwd[pos]);
