@@ -23,11 +23,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/manualAttendance"/>
+            android:id="@+id/manualAttendance"
+            android:text="@string/get_absent_list"
+            android:textStyle="bold"
+            android:fontFamily="casual"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/view_attendance"
+            android:text="@string/get_present_list"
             android:textStyle="bold"
             android:fontFamily="casual"
             android:id="@+id/showAttendance" />

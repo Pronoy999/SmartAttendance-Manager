@@ -9,7 +9,8 @@
     <string name="roll_number">Roll Number</string>
     <string name="get_attendance">Get Attendance</string>
     <string name="add_manually">Add Manually</string>
-    <string name="view_attendance">View Attendance</string>
+    <string name="get_absent_list">See absent list</string>
+    <string name="get_present_list">See present list</string>
     <string name="give_attendance">Present!</string>
     <string name="add_student">Add Student</string>
     <string name="register1">Complete Registration</string>

@@ -38,10 +38,10 @@
             android:name=".ManualAttendance"
             android:parentActivityName=".TeacherActivity" />
         <activity
-            android:name=".ViewAttendance"
-            android:parentActivityName=".TeacherActivity" />
-        <activity android:name=".StudentRegister"
-            android:parentActivityName=".MainActivity"/>
+            android:name=".StudentRegister"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".PresentList" />
+        <activity android:name=".AbsentLIst"></activity>
     </application>
 
 </manifest>
