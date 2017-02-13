@@ -174,13 +174,13 @@ public class FileController {
      * @return: NUMBER OF STUDENTS from file.
      */
     public int updateStudent_Number(){
-        String num="";
+        String num="0";
         try{
-            FileInputStream fileInputStream=new FileInputStream(Constant.STUDENT_NUMBER_FILE);
+            FileInputStream fileInputStream=context.openFileInput(Constant.STUDENT_NUMBER_FILE);
             Scanner scanner=new Scanner(fileInputStream);
             scanner.useDelimiter(",");
             while(scanner.hasNext())
-                num+=scanner.next();
+                num=scanner.next();
             scanner.close();
             fileInputStream.close();
         }
