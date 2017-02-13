@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 Message.logMessages("MAIN:",register);
-                String name=register.substring(0,register.indexOf(' '));//retriving the data and the password.
+                String name=register.substring(0,register.indexOf(' '));//retreivng the data and the password.
                 String pass=register.substring(register.indexOf(' ')+1,register.length()-1);
                 bundle=new Bundle();
                 bundle.putString(Constant.REGISTER_NAME,name);
@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else{
+            Message.toastMessage(getApplicationContext(),"Student not logged in!","");
             bundle=new Bundle();
             bundle.putString(Constant.LOGIN_ACCOUNT,"student");
             intent=new Intent(MainActivity.this,LoginActivity.class);

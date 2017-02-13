@@ -56,24 +56,26 @@ public class RegisterActivity extends AppCompatActivity {
                 registerStudent(nameS, rollS);
             }
         });
-        /*register.setOnLongClickListener(new View.OnLongClickListener() {
+        /*findViewById(R.id.register).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Add students one after another!","");
                 return false;
             }
-        });
-        completeRegister.setOnLongClickListener(new View.OnLongClickListener() {
+        });*/
+        findViewById(R.id.register_complete).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Message.toastMessage(getApplicationContext(),"Registraton of all students completed!","");
+                Message.toastMessage(getApplicationContext(),"Complete the registration process!","");
                 return false;
             }
-        });*/
+        });
         findViewById(R.id.register_complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToActivity();
+                if(Constant.NUMBER_STUDENTS>0)
+                    goToActivity();
+                else Message.toastMessage(getApplicationContext(),"Register your students first!","");
             }
         });
 
@@ -135,6 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void reset(){
         name.setText("");
         roll.setText("");
+        name.setFocusable(true);
         timeOut=0;
         Message.logMessages("RESET", "TIMER CANCELLED, TIMEOUT =0");
         timer.cancel();

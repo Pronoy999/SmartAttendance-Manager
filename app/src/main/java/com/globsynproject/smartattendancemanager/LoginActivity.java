@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final FileController fileController=new FileController(getApplicationContext());
         Bundle bundle=getIntent().getExtras();
+        final EditText userN=(EditText) findViewById(R.id.username);
+        final EditText pass=(EditText) findViewById(R.id.password);
         account=bundle.getString(Constant.LOGIN_ACCOUNT);
         findViewById(R.id.signup).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -27,9 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fileController.create_loginFile(account);
-                Message.toastMessage(getApplicationContext(),"Logged in successfully!","");
-                goToActivity();
+                if(userN.getText().toString().length()!=0 && pass.getText().toString().length()!=0) {
+                    fileController.create_loginFile(account);
+                    Message.toastMessage(getApplicationContext(), "Logged in successfully!", "");
+                    goToActivity();
+                }
+                else Message.toastMessage(getApplicationContext(),"Please provide the details first.","");
             }
         });
     }
