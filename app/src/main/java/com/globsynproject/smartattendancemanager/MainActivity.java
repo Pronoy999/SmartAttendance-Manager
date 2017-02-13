@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             else{
                 Message.logMessages("MAIN:",register);
                 String name=register.substring(0,register.indexOf(' '));
-                String pass=register.substring(register.indexOf(' ')+1);
+                String pass=register.substring(register.indexOf(' ')+1,register.length()-1);
                 bundle=new Bundle();
                 bundle.putString(Constant.REGISTER_NAME,name);
                 bundle.putString(Constant.REGISTER_PASSWORD,pass);

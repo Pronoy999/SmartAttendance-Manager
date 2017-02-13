@@ -1,6 +1,5 @@
 package com.globsynproject.smartattendancemanager;
 
-import android.content.Intent;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,13 +17,13 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        /*button.setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.present).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Message.toastMessage(getApplicationContext(),"Give today's attendance!","");
                 return false;
             }
-        });*/
+        });
         WifiController.wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         findViewById(R.id.present).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,11 +37,9 @@ public class StudentActivity extends AppCompatActivity {
      * NOTE: This is the method to give the attendance.
      */
     private void giveAttendance(){
-        Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
+        Bundle bundle=getIntent().getExtras();
         String name=bundle.getString(Constant.REGISTER_NAME);
         String password=bundle.getString(Constant.REGISTER_PASSWORD);
-        //wifiController=new WifiController(getApplicationContext());
         wifiConfiguration=WifiController.turnAccessPointOn(name,password);
     }
 
