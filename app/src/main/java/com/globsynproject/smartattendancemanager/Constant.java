@@ -37,4 +37,9 @@ public abstract class Constant {
     public static final int ID_PROGRESS_DIALOG= 1;
     public static final String STUDENT_NUMBER_FILE="NumberStudents.dat";
     public static String getList[]=new String[NUMBER_STUDENTS];
+    public static final String WIFI_WARNING_MESSAGE = "Before pressing the button, please switch on WiFi and remain disconnected from ALL networks";
+    public static final String WIFI_NOT_READY_MESSAGE = "Please switch on WiFi and remain disconnected from ALL networks to proceed";
+    public static final String REGISTER_FAILED_MESSAGE = "Registration failed. Please try again.\nMake sure student is ready for registration." ;
+    public static final String REGISTER_SUCCESSFUL_MESSAGE = "Registered successfully!";
+    public static final String REGISTER_CANCEL_MESSAGE = "Registration cancelled";
 }
