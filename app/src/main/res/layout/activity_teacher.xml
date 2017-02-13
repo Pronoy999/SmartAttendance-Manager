@@ -23,7 +23,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/manualAttendance"
+            android:id="@+id/showAbsentList"
             android:text="@string/get_absent_list"
             android:textStyle="bold"
             android:fontFamily="casual"/>
@@ -33,7 +33,7 @@
             android:text="@string/get_present_list"
             android:textStyle="bold"
             android:fontFamily="casual"
-            android:id="@+id/showAttendance" />
+            android:id="@+id/showPresentList" />
 </LinearLayout>
 
 

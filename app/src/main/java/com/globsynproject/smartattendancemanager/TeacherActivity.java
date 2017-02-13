@@ -22,7 +22,7 @@ public class TeacherActivity extends AppCompatActivity {
     static Timer timer;
     FileController fileController;
     static String ssid[], pwd[];
-    Button manualAttendance, showAttendance;
+    Button showAbsent, showPresent;
     static int timeOut = 0, position =0;
 
     @Override
@@ -37,32 +37,11 @@ public class TeacherActivity extends AppCompatActivity {
         ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
         pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);
         WifiController.wifiManager =(WifiManager) getSystemService(WIFI_SERVICE);
-        showAttendance=(Button) findViewById(R.id.showAttendance);
-        manualAttendance=(Button) findViewById(R.id.manualAttendance);
-        showAttendance.setVisibility(View.INVISIBLE);
-        manualAttendance.setVisibility(View.INVISIBLE);
+        showAbsent=(Button) findViewById(R.id.showAbsentList);
+        showPresent=(Button) findViewById(R.id.showPresentList);
+        showAbsent.setVisibility(View.INVISIBLE);
+        showPresent.setVisibility(View.INVISIBLE);
 
-        /*takeAttendance.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Message.toastMessage(getApplicationContext(),"Take the attendance of the class!","");
-                return false;
-            }
-        });
-        manualAttendance.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Message.toastMessage(getApplicationContext(),"Add the attendance manually","");
-                return false;
-            }
-        });
-        showAttendance.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Message.toastMessage(getApplicationContext(),"Show today's attendance","");
-                return false;
-            }
-        });*/
         if(WifiController.getConnectionStatus()){
             Message.toastMessage(getApplicationContext(),Constant.WIFI_WARNING_MESSAGE, "long");
             return;
@@ -71,6 +50,18 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startAttendance();
+            }
+        });
+        showPresent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), PresentList.class));
+            }
+        });
+        showAbsent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AbsentLIst.class));
             }
         });
     }
@@ -123,8 +114,8 @@ public class TeacherActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Message.toastMessage(getApplicationContext(),"Attendance taken!","");
-                    showAttendance.setVisibility(View.VISIBLE);
-                    manualAttendance.setVisibility(View.VISIBLE);
+                    showAbsent.setVisibility(View.VISIBLE);
+                    showPresent.setVisibility(View.VISIBLE);
                 }
             });
             return;
