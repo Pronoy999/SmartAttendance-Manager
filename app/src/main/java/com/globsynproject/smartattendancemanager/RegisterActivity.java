@@ -144,6 +144,8 @@ public class RegisterActivity extends AppCompatActivity {
         FileController fileController=new FileController(getApplicationContext());
         DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
         fileController.backup_StudentNumber(Constant.NUMBER_STUDENTS);
+        Constant.getList = new String[Constant.NUMBER_STUDENTS];
+        Constant.getList1 = new String[Constant.NUMBER_STUDENTS];
         bundle=dataBaseController.getPasswordAndSSID();
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
         intent.putExtras(bundle);

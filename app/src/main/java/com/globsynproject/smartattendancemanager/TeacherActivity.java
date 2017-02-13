@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -72,6 +73,17 @@ public class TeacherActivity extends AppCompatActivity {
                 startAttendance();
             }
         });
+        showAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToView();
+            }
+        });
+    }
+
+    public void goToView(){
+        Intent i = new Intent(TeacherActivity.this, ViewAttendance.class);
+        startActivity(i);
     }
     public void startAttendance(){
         if(!WifiController.checkWifiOn()||(WifiController.checkWifiOn()&&WifiController.getConnectionStatus())){
