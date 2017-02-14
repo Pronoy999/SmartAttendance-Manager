@@ -43,4 +43,5 @@ public abstract class Constant {
     public static final String REGISTER_FAILED_MESSAGE = "Registration failed. Please try again.\nMake sure student is ready for registration." ;
     public static final String REGISTER_SUCCESSFUL_MESSAGE = "Registered successfully!";
     public static final String REGISTER_CANCEL_MESSAGE = "Registration cancelled";
+    public static final int REGISTER_CODE=69;
 }
