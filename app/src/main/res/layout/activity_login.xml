@@ -4,46 +4,59 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aed581">
+    android:background="#41a694"
+    android:padding="20sp">
         <LinearLayout
+            android:background="@drawable/back_dark"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:padding="40sp">
-
+            android:padding="20sp">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/icon"
                 android:src="@drawable/icon"
-                android:padding="15sp"
-                />
-
-            <EditText
+                android:padding="20sp" />
+            <LinearLayout
+                android:padding="10sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
-                android:hint="@string/enter_name"
-                android:fontFamily="casual"
-                android:textStyle="bold"
-                />
-            <EditText
+                android:orientation="vertical">
+                <EditText
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:id="@+id/username"
+                    android:hint="@string/enter_name"
+                    android:textColorHint="#abffffff"
+                    android:fontFamily="sans-serif"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:id="@+id/password"
+                    android:inputType="numberPassword"
+                    android:hint="@string/enter_password"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="#abffffff" />
+            </LinearLayout>
+            <LinearLayout
+                android:paddingStart="50sp"
+                android:paddingEnd="50sp"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/password"
-                android:inputType="numberPassword"
-                android:hint="@string/enter_password"
-                android:fontFamily="casual"
-                android:textStyle="bold"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/signup"
-                android:text="@string/signup"
-                android:fontFamily="casual"
-                android:textStyle="bold"
-                />
+                android:orientation="vertical">
+                <Button
+                    android:background="@drawable/button_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/signup"
+                    android:text="@string/signup"
+                    android:fontFamily="sans-seriF"
+                    android:textColor="#f9ffff" />
+            </LinearLayout>
         </LinearLayout>
 </ScrollView>

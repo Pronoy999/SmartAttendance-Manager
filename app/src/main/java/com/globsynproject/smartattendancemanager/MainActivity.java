@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivity(i);
             }
         }
+        Constant.dataBaseController=new DataBaseController(getApplicationContext());
         findViewById(R.id.teacher).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.NegativeRegister, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DataBaseController dataBaseController = new DataBaseController(getApplicationContext());
-                Bundle bundle = dataBaseController.getPasswordAndSSID();
+                //DataBaseController dataBaseController = new DataBaseController(getApplicationContext());
+                Bundle bundle = Constant.dataBaseController.getPasswordAndSSID();
                 Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
                 intent.putExtras(bundle);
                 Message.toastMessage(getApplicationContext(), "Teacher logged in!", "");

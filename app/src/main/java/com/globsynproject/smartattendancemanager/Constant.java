@@ -39,4 +39,5 @@ public abstract class Constant {
     public static final String REGISTER_SUCCESSFUL_MESSAGE = "Registered successfully!";
     public static final String REGISTER_CANCEL_MESSAGE = "Registration cancelled";
     public static final int REGISTER_CODE=69;
+    public static DataBaseController dataBaseController;
 }

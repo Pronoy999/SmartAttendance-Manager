@@ -49,13 +49,12 @@ public class FileController {
      * NOTE: This method is used to send the list of the BSSID's to the database.
      */
     public void sendAttendance(){
-        DataBaseController dataBaseController=new DataBaseController(context);
         try{
             FileInputStream fileInputStream=context.openFileInput(Constant.FILE_NAME);
             Scanner obj=new Scanner(fileInputStream);
             obj.useDelimiter(",");
             while(obj.hasNext()){
-                dataBaseController.putAttendance(obj.next());
+                Constant.dataBaseController.putAttendance(obj.next());
             }
             obj.close();
             fileInputStream.close();

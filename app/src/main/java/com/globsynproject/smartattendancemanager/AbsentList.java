@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class AbsentList extends AppCompatActivity {
 
     ListView listView;
-    static DataBaseController dataBaseController;
     ArrayList<String>arrayList;
 
     @Override
@@ -21,27 +20,25 @@ public class AbsentList extends AppCompatActivity {
 
         listView=(ListView)findViewById(R.id.absentList);
 
-        dataBaseController=new DataBaseController(getApplicationContext());
-        arrayList=dataBaseController.getAbsentList();
+        arrayList=Constant.dataBaseController.getAbsentList();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_checked,
                 arrayList);
         listView.setAdapter(adapter);
-        (findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+        /*(findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
-                dataBaseController.getAllData();
+                Constant.dataBaseController.getAllData();
             }
-        });
+        });*/
     }
     public void addManually(View view){
         int i=0;
         for(String l:arrayList){
             if(listView.isItemChecked(i)){
-                dataBaseController.putAttendanceByRoll(l.substring(0,l.indexOf(" ")));
+                Constant.dataBaseController.putAttendanceByRoll(l.substring(0,l.indexOf(" ")));
             }
             i++;
         }

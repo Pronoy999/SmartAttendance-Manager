@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_student"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/back1"
+        android:background="#41a694"
         android:layout_gravity="center"
         android:padding="30sp">
-        <ImageView
+        <LinearLayout
+            android:background="@drawable/back_dark"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/present"
-            android:padding="75sp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/give_attendance"
-            android:id="@+id/present"
-            android:padding="15sp"/>
+            android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/present"
+                    android:paddingTop="30sp"
+                    android:paddingBottom="100sp"
+                    android:id="@+id/imageView" />
+                <LinearLayout
+                    android:paddingStart="50sp"
+                    android:paddingEnd="50sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <Button
+                            android:background="@drawable/button_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/give_attendance"
+                            android:textColor="#f9ffff"
+                            android:id="@+id/present"
+                            android:padding="15sp"/>
+                </LinearLayout>
+        </LinearLayout>
+
 </LinearLayout>
 

@@ -3,51 +3,86 @@
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aed581">
+    android:background="#41a694"
+    android:paddingStart="20sp"
+    android:paddingEnd="20sp"
+    android:paddingTop="20sp"
+    android:paddingBottom="20sp">
     <LinearLayout
+        android:background="@drawable/back_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:padding="40sp">
+        android:padding="20sp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200sp"
+            android:layout_height="200sp"
+            android:layout_gravity="center"
             android:src="@drawable/adduser1"
-            android:padding="30sp"/>
+            android:paddingTop="0sp"
+            android:paddingBottom="5sp"/>
+        <LinearLayout
+            android:paddingStart="0sp"
+            android:paddingEnd="20sp"
+            android:paddingBottom="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:inputType="text"
+                android:hint="@string/student_name"
+                android:textSize="18sp"
+                android:textColorHint="#abffff"
+                android:fontFamily="sans-serif" >
+            </EditText>
+            <EditText
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/roll"
+                android:hint="@string/roll_number"
+                android:inputType="number"
+                android:fontFamily="sans-serif"
+                android:textColorHint="#abffff" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingBottom="5sp"
+            android:paddingStart="50sp"
+            android:paddingEnd="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:background="@drawable/button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_student"
+                android:id="@+id/addStudent"
+                android:fontFamily="sans-serif"
+                android:textColor="#f9ffff"/>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingTop="5sp"
+            android:paddingStart="50sp"
+            android:paddingEnd="50sp"
+            android:paddingBottom="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:inputType="text"
-            android:hint="@string/student_name"
-            android:textStyle="bold"
-            android:fontFamily="casual" >
-            <requestFocus/>
-        </EditText>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/roll"
-            android:hint="@string/roll_number"
-            android:inputType="number"
-            android:fontFamily="casual"
-            android:textStyle="bold"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_student"
-            android:id="@+id/addStudent"
-            android:fontFamily="casual"
-            android:textStyle="bold"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register1"
-            android:id="@+id/register_complete"
-            android:fontFamily="casual"
-            android:textStyle="bold" />
+                android:background="@drawable/button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register1"
+                android:id="@+id/register_complete"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textColor="#f9ffff"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 </ScrollView>

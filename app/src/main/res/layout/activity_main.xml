@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:padding="20sp"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/activity_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/back1"
+            android:background="#41a694"
             android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/back_dark">
             <TextView
+                android:padding="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_profile"
+                android:hint="@string/choose_profile"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColorHighlight="@color/colorPrimaryDark"
+                android:textColorHint="#f9ffff"
                 android:textSize="20sp"
-                android:scrollbarSize="10sp"
-                android:textColorLink="@android:color/holo_blue_light"
-                android:fontFamily="casual"/>
+                android:fontFamily="sans-serif-smallcaps"/>
             <ImageView
+                android:layout_weight="1"
                android:layout_width="match_parent"
-               android:layout_height="228sp"
+               android:layout_height="match_parent"
                android:id="@+id/teacher"
                android:src="@drawable/teacher"
                android:clickable="true"
                android:padding="15sp"
                android:contentDescription="@string/app_name"/>
+            <TextView
+                android:padding="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/or"
+                android:textAlignment="center"
+                android:textColorHint="#f9ffff"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-smallcaps"/>
             <ImageView
                android:layout_width="match_parent"
-               android:layout_height="228sp"
+               android:layout_height="match_parent"
                android:id="@+id/student"
                android:src="@drawable/student"
                android:clickable="true"
-               android:padding="15sp" />
+               android:padding="15sp"
+                android:layout_weight="1"/>
+    </LinearLayout>
 </LinearLayout>
-

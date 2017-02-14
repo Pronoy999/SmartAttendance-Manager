@@ -66,27 +66,28 @@ public class DataBaseController{
      */
     public long putAttendance(String bssid){
         int attendance=0;
-        SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
-        String columns[]={Constant.ATTENDANCE};
-        String selectionArgs[]={bssid};
-        Cursor cursor=sqLiteDatabase.query(Constant.TABLE_NAME,columns,Constant.BSSID+" =?",selectionArgs,null,null,null,null);
-        if(cursor==null) {
+        SQLiteDatabase sqLiteDatabase;
+        ContentValues contentValues;
+        String whereArgs[]= {bssid};;
+        sqLiteDatabase = helper.getWritableDatabase();
+        String columns[] = {Constant.ATTENDANCE};
+        String selectionArgs[] = {bssid};
+        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, columns, Constant.BSSID + " =?", selectionArgs, null, null, null, null);
+        if (cursor == null) {
             Message.logMessages("Error: ", "Wrong BSSID sent");
             return -1;
         }
         while (cursor.moveToNext()) {
-            attendance=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));//column index of Constant.ATTENDANCE is 6
+            attendance = cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));//column index of Constant.ATTENDANCE is 6
         }
         cursor.close();
         /**
-         * contentValues is used to update the database with the incremented attendance and puts flag=1
+         * * contentValues is used to update the database with the incremented attendance and puts flag=1
          */
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(Constant.ATTENDANCE,attendance+1);
-        Message.logMessages("putAttendance:","Attendance++ done");
+        contentValues = new ContentValues();
+        contentValues.put(Constant.ATTENDANCE, attendance + 1);
+        Message.logMessages("putAttendance:", "Attendance++ done");
         contentValues.put(Constant.FLAG,1);
-        Message.logMessages("putAttendance:","Flag updated with 1");
-        String[] whereArgs = {bssid};
         return sqLiteDatabase.update(Constant.TABLE_NAME,contentValues,Constant.BSSID+"=?",whereArgs);
     }
 
@@ -163,6 +164,7 @@ public class DataBaseController{
                         +cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE))+" ");//ATTENDANCE
             }
         }while (cursor.moveToNext());
+        cursor.close();
         return arrayList;
     }
     /**
@@ -172,7 +174,6 @@ public class DataBaseController{
     public  ArrayList<String> getAbsentList(){
 
         ArrayList<String> arrayList=new ArrayList<>();
-        //String array[]=new String[Constant.NUMBER_STUDENTS];
         SQLiteDatabase sqLiteDatabase=helper.getReadableDatabase();
         Cursor cursor= sqLiteDatabase.query(Constant.TABLE_NAME,null,null,null,null,null,null,null);
         cursor.moveToFirst();
@@ -187,6 +188,10 @@ public class DataBaseController{
         /**
          * contentvalues is used to update the value of the Constant.FLAG with 0  in the database.
          */
+        return arrayList;
+    }
+    public void updateFlag(){
+        SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(Constant.FLAG,0);
         String whereargs[]={"1"};
@@ -194,7 +199,6 @@ public class DataBaseController{
         if(id!=-1){
             Message.logMessages("getAbsentList:","FLAGs updated with 0");
         }
-        return arrayList;
     }
     private static class MyHelper extends SQLiteOpenHelper {
 

@@ -1,22 +1,24 @@
 <resources>
     <string name="app_name">Smart Attendance Manager</string>
-    <string name="choose_profile">Choose your profile</string>
-    <string name="enter_name">Enter username</string>
-    <string name="enter_password">Enter password</string>
-    <string name="signup">Sign Up</string>
-    <string name="student_name">Name</string>
-    <string name="register">Register</string>
-    <string name="roll_number">Roll Number</string>
-    <string name="get_attendance">Get Attendance</string>
-    <string name="add_manually">Add Manually</string>
-    <string name="get_absent_list">See absent list</string>
-    <string name="get_present_list">See present list</string>
-    <string name="give_attendance">Present!</string>
-    <string name="add_student">Add Student</string>
-    <string name="register1">Complete Registration</string>
-    <string name="register2">Register</string>
+    <string name="choose_profile">CHOOSE PROFILE</string>
+    <string name="enter_name">USERNAME</string>
+    <string name="enter_password">PASSWORD</string>
+    <string name="or">OR</string>
+    <string name="signup">SIGN UP</string>
+    <string name="student_name">NAME</string>
+    <string name="register">REGISTER</string>
+    <string name="roll_number">ROLL NUMBER</string>
+    <string name="get_attendance">GET ATTENDANCE</string>
+    <string name="add_manually">ADD MANUALLY</string>
+    <string name="get_absent_list">SEE ABSENT LIST</string>
+    <string name="get_present_list">SEE PRESENT LIST</string>
+    <string name="give_attendance">PRESENT</string>
+    <string name="add_student">ADD STUDENT</string>
+    <string name="enter_name_student">NAME</string>
+    <string name="enter_roll_student">ROLL NUMBER</string>
+    <string name="register1">COMPLETE REGISTRATION</string>
+    <string name="register2">REGISTER</string>
     <string name="ifRegister">Do you want to Register any more Students?</string>
     <string name="PostiveRegister">Yes</string>
     <string name="NegativeRegister">No</string>
-
 </resources>

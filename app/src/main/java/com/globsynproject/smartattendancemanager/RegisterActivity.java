@@ -24,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
     private static Timer timer;
     static ProgressDialog progressDialog;
     private static int timeOut=0;
-    private DataBaseController dc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         roll = (EditText) findViewById(R.id.roll);
         WifiController.wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        dc = new DataBaseController(this);
         (findViewById(R.id.addStudent)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,13 +97,13 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(Constant.ROLL_NUMBER, rollS);
                     WifiInfo info = WifiController.wifiManager.getConnectionInfo();
                     values.put(Constant.SSID, nameS);
-                    values.put(Constant.BSSID, info.getSSID());
+                    values.put(Constant.BSSID, info.getBSSID());
                     WifiController.disbandConnection();
                     Message.logMessages("WIFI: ", "DISCONNECTED");
                     values.put(Constant.PASSWORD, rollS);
                     values.put(Constant.ATTENDANCE, 0);
                     values.put(Constant.FLAG, 0);
-                    dc.inputData(values);
+                    Constant.dataBaseController.inputData(values);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -129,7 +127,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void reset(){
         name.setText("");
-        roll.setText("");
+        String r=Integer.toString(Integer.parseInt(roll.getText().toString()))+1;
+        roll.setText(r);
         name.setFocusable(true);
         timeOut=0;
         Message.logMessages("RESET", "TIMER CANCELLED, TIMEOUT =0");
@@ -138,12 +137,9 @@ public class RegisterActivity extends AppCompatActivity {
     private void goToActivity(){
         Bundle bundle;
         FileController fileController=new FileController(getApplicationContext());
-        DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
         fileController.backup_StudentNumber(Constant.NUMBER_STUDENTS);
         Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
-        //Constant.presentListArray = new String[Constant.NUMBER_STUDENTS];
-        //Constant.absentListArray = new String[Constant.NUMBER_STUDENTS];
-        bundle=dataBaseController.getPasswordAndSSID();
+        bundle=Constant.dataBaseController.getPasswordAndSSID();
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
@@ -152,14 +148,14 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        goToActivity();
+        //goToActivity();
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         progressDialog = new ProgressDialog(this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Registering...");
-        progressDialog.setIcon(R.drawable.icon);
+        progressDialog.setIcon(R.drawable.adduser1);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             @Override

@@ -3,39 +3,54 @@
     android:id="@+id/activity_student_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1">
+    android:background="#41a694"
+    android:padding="30sp">
     <LinearLayout
+            android:background="@drawable/back_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="40sp"
+            android:padding="30sp"
             android:layout_gravity="center">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/students1"
-            android:padding="40sp"/>
-        <EditText
+            android:src="@drawable/students1" />
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter name"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:id="@+id/name" />
-        <EditText
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_name_student"
+                android:textColorHint="#abffff"
+                android:fontFamily="sans-serif"
+                android:id="@+id/name" />
+            <EditText
+                android:paddingBottom="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_roll_student"
+                android:textColorHint="#abffff"
+                android:fontFamily="sans-serif"
+                android:id="@+id/roll"
+                android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingStart="30sp"
+            android:paddingEnd="30sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter roll number"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:id="@+id/roll"
-            android:inputType="number" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/register"
-            android:text="@string/register2"
-            android:textStyle="bold"
-            android:fontFamily="casual" />
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@drawable/button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register"
+                android:text="@string/register2"
+                android:textColor="#f9ffff"
+                android:fontFamily="sans-serif" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

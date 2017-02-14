@@ -1,39 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_teacher"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/back1"
-        android:layout_gravity="center"
-        android:padding="40sp">
-        <ImageView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_teacher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#41a694"
+    android:layout_gravity="center"
+    android:padding="30sp">
+        <LinearLayout
+            android:paddingBottom="20sp"
+            android:background="@drawable/back_dark"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/teacherlogin"
-            android:padding="75sp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/get_attendance"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:id="@+id/takeAttendance" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/showAbsentList"
-            android:text="@string/get_absent_list"
-            android:textStyle="bold"
-            android:fontFamily="casual"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/get_present_list"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:id="@+id/showPresentList" />
+            android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250sp"
+                    android:src="@drawable/teacherlogin"
+                    android:paddingTop="2sp"
+                    android:paddingBottom="20sp" />
+                <LinearLayout
+                    android:paddingStart="50sp"
+                    android:paddingEnd="50sp"
+                    android:paddingBottom="5sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <Button
+                            android:background="@drawable/button_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/get_attendance"
+                            android:textColor="#f9ffff"
+                            android:fontFamily="sans-serif"
+                            android:id="@+id/takeAttendance" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="5dp"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="50dp"
+                    android:paddingBottom="5sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <Button
+                            android:background="@drawable/button_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/showAbsentList"
+                            android:text="@string/get_absent_list"
+                            android:textColor="#f9ffff"
+                            android:fontFamily="sans-serif-smallcaps"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="5sp"
+                    android:paddingStart="50sp"
+                    android:paddingEnd="50sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <Button
+                            android:background="@drawable/button_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/get_present_list"
+                            android:textColor="#f9ffff"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:id="@+id/showPresentList" />
+                </LinearLayout>
+        </LinearLayout>
+
 </LinearLayout>
 
 

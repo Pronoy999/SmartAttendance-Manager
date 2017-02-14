@@ -29,7 +29,6 @@ public class TeacherActivity extends AppCompatActivity {
 
         fileController=new FileController(this);
 
-        //Message.toastMessage(getApplicationContext(),Constant.NUMBER_STUDENTS+"","");
         Bundle b = getIntent().getExtras();
         ssid = b.getStringArray(Constant.BUNDLE_KEY_SSID);
         pwd = b.getStringArray(Constant.BUNDLE_KEY_PASSWORD);
@@ -124,6 +123,7 @@ public class TeacherActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Constant.dataBaseController.updateFlag();
         fileController.delete_File();//deleting the temporary file.
     }
 
@@ -135,7 +135,7 @@ public class TeacherActivity extends AppCompatActivity {
     protected Dialog onCreateDialog(int id) {
         progressDialog = new ProgressDialog(this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Taking Attendance");
-        progressDialog.setIcon(R.drawable.icon);
+        progressDialog.setIcon(R.drawable.teacherlogin);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             @Override
