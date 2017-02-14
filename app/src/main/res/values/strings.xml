@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Smart Attendance Manager</string>
+    <string name="app_name">Classistant</string>
     <string name="choose_profile">CHOOSE PROFILE</string>
     <string name="enter_name">USERNAME</string>
     <string name="enter_password">PASSWORD</string>
