@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class PresentList extends AppCompatActivity {
 
     @Override
@@ -14,12 +16,12 @@ public class PresentList extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.presentList);
 
         DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
-        dataBaseController.getPresentList();
+        ArrayList<String>arrayList=dataBaseController.getPresentList();
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                Constant.presentListArray);
+                arrayList);
         listView.setAdapter(adapter1);
     }
 }

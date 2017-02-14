@@ -1,5 +1,8 @@
 package com.globsynproject.smartattendancemanager;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -56,11 +59,17 @@ public class MainActivity extends AppCompatActivity {
         Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
         String login=fileController.check_loginFile();
         if(login.equals("teacher logged in")){
-            DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
-            bundle=dataBaseController.getPasswordAndSSID();
-            intent=new Intent(MainActivity.this,TeacherActivity.class);
-            intent.putExtras(bundle);
-            Message.toastMessage(getApplicationContext(),"Teacher logged in!","");
+            showDialog(Constant.REGISTER_CODE);
+            /*if(!ifRegister) {
+                DataBaseController dataBaseController = new DataBaseController(getApplicationContext());
+                bundle = dataBaseController.getPasswordAndSSID();
+                intent = new Intent(MainActivity.this, TeacherActivity.class);
+                intent.putExtras(bundle);
+                Message.toastMessage(getApplicationContext(), "Teacher logged in!", "");
+            }
+            else{
+                intent=new Intent(MainActivity.this,RegisterActivity.class);
+            }*/
         }
         else {
             bundle=new Bundle();
@@ -68,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
             intent=new Intent(MainActivity.this,LoginActivity.class);
             intent.putExtras(bundle);
             Message.toastMessage(getApplicationContext(),"Teacher not Logged in!","");
+            startActivity(intent);
         }
-        startActivity(intent);
     }
 
     /**
@@ -107,5 +116,31 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtras(bundle);
         }
         startActivity(intent);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage(R.string.ifRegister);
+        builder.setPositiveButton(R.string.PostiveRegister, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent=new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.NegativeRegister, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DataBaseController dataBaseController = new DataBaseController(getApplicationContext());
+                Bundle bundle = dataBaseController.getPasswordAndSSID();
+                Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
+                intent.putExtras(bundle);
+                Message.toastMessage(getApplicationContext(), "Teacher logged in!", "");
+                startActivity(intent);
+                //finish();
+            }
+        });
+        return builder.create();
     }
 }

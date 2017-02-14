@@ -140,8 +140,9 @@ public class RegisterActivity extends AppCompatActivity {
         FileController fileController=new FileController(getApplicationContext());
         DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
         fileController.backup_StudentNumber(Constant.NUMBER_STUDENTS);
-        Constant.presentListArray = new String[Constant.NUMBER_STUDENTS];
-        Constant.absentListArray = new String[Constant.NUMBER_STUDENTS];
+        Constant.NUMBER_STUDENTS=fileController.updateStudent_Number();
+        //Constant.presentListArray = new String[Constant.NUMBER_STUDENTS];
+        //Constant.absentListArray = new String[Constant.NUMBER_STUDENTS];
         bundle=dataBaseController.getPasswordAndSSID();
         Intent intent=new Intent(RegisterActivity.this,TeacherActivity.class);
         intent.putExtras(bundle);

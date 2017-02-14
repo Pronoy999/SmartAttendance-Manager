@@ -15,5 +15,8 @@
     <string name="add_student">Add Student</string>
     <string name="register1">Complete Registration</string>
     <string name="register2">Register</string>
+    <string name="ifRegister">Do you want to Register any more Students?</string>
+    <string name="PostiveRegister">Yes</string>
+    <string name="NegativeRegister">No</string>
 
 </resources>

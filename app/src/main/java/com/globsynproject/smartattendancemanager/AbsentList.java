@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class AbsentList extends AppCompatActivity {
 
     ListView listView;
-    DataBaseController dataBaseController;
+    static DataBaseController dataBaseController;
+    ArrayList<String>arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,21 +22,21 @@ public class AbsentList extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.absentList);
 
         dataBaseController=new DataBaseController(getApplicationContext());
-        dataBaseController.getPresentList();
+        arrayList=dataBaseController.getAbsentList();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_checked,
-                Constant.absentListArray);
+                arrayList);
         listView.setAdapter(adapter);
     }
     public void addManually(View view){
         int i=0;
-
-        for( String s :Constant.absentListArray){
+        for(String l:arrayList){
             if(listView.isItemChecked(i)){
-                dataBaseController.putAttendanceByRoll(s.substring(0,s.indexOf(" ")));
+                dataBaseController.putAttendanceByRoll(l.substring(0,l.indexOf(" ")));
             }
+            i++;
         }
     }
 }

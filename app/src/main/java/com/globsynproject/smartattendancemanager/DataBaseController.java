@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 
 /** This is the database controller class
  */
@@ -145,59 +148,40 @@ public class DataBaseController{
      * @return b: b is a Bundle type data which contains String arrays with keys name,roll AND Integer array with key attendance.
      * The Bundle shall be extracted to from the present list of students for the current day
      */
-    public void getPresentList(){
-       // Bundle bundle=new Bundle();
-        int i=0;
-        //String array[]=new String[Constant.NUMBER_STUDENTS];
-//        String rolls[]=new String[Constant.NUMBER_STUDENTS];
-//        int atten []=new int[Constant.NUMBER_STUDENTS];
+    public ArrayList<String> getPresentList(){
+       ArrayList<String> arrayList=new ArrayList<>();
         SQLiteDatabase sqLiteDatabase=helper.getReadableDatabase();
         Cursor cursor= sqLiteDatabase.query(Constant.TABLE_NAME,null,null,null,null,null,null,null);
         cursor.moveToFirst();
         do {
-            if(cursor.getInt(7)==1)//column index of CONSTANT.FLAG is 7
+            if(cursor.getInt(cursor.getColumnIndex(Constant.FLAG))==1)//column index of CONSTANT.FLAG is 7
             {
-                Constant.presentListArray[i]=cursor.getString(2)+" "//ROLL
-                        +cursor.getString(1)+" "//NAME
-                        +cursor.getInt(6)+" ";//ATTENDANCE
-//                names[i]=cursor.getString(1);//column index of CONSTANT.NAME is 1
-//                rolls[i]=cursor.getString(2);//column index of CONSTANT.ROLL_NUMBER is 2
-//                atten[i]=cursor.getInt(6);//column index of CONSTANT.ATTENDANCE is 6
-                i++;
+                arrayList.add(cursor.getString(cursor.getColumnIndex(Constant.ROLL_NUMBER))+" "//ROLL
+                        +cursor.getString(cursor.getColumnIndex(Constant.NAME))+" "//NAME
+                        +cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE))+" ");//ATTENDANCE
             }
         }while (cursor.moveToNext());
-//        bundle.putStringArray(Constant.BUNDLE_KEY_NAME,names);
-//        bundle.putStringArray(Constant.BUNDLE_KEY_ROLL,rolls);
-//        bundle.putIntArray(Constant.BUNDLE_KEY_ATTENDANCE,atten);
+        return arrayList;
     }
     /**
      * This method fetches the NAME, ROLL NUMBER and ATTENDANCE of the students absent the current day.
      * @return bundle: Bundle contains string arrays name and roll and an integer array attendance.
      */
-    public  void getAbsentList(){
-        //Bundle bundle=new Bundle();
-        int i=0;
+    public  ArrayList<String> getAbsentList(){
+
+        ArrayList<String> arrayList=new ArrayList<>();
         //String array[]=new String[Constant.NUMBER_STUDENTS];
-//        String rolls[]=new String[Constant.NUMBER_STUDENTS];
-//        int atten []=new int[Constant.NUMBER_STUDENTS];
         SQLiteDatabase sqLiteDatabase=helper.getReadableDatabase();
         Cursor cursor= sqLiteDatabase.query(Constant.TABLE_NAME,null,null,null,null,null,null,null);
         cursor.moveToFirst();
         do {
-            if(cursor.getInt(7)==0)//column index of CONSTANT.FLAG is 7
+            if(cursor.getInt(cursor.getColumnIndex(Constant.FLAG))==0)//column index of CONSTANT.FLAG is 7
             {
-                Constant.absentListArray[i]=cursor.getString(2)+" "  //ROLL
-                        +cursor.getString(1)+" "//NAME
-                        +cursor.getInt(6)+" ";//ATTENDANCE
-//                names[i]=cursor.getString(1);//column index of CONSTANT.NAME is 1
-//                rolls[i]=cursor.getString(2);//column index of CONSTANT.ROLL_NUMBER is 2
-//                atten[i]=cursor.getInt(6);//column index of CONSTANT.ATTENDANCE is 6
-                i++;
+                arrayList.add(cursor.getString(cursor.getColumnIndex(Constant.ROLL_NUMBER))+" "  //ROLL
+                        +cursor.getString(cursor.getColumnIndex(Constant.NAME))+" "//NAME
+                        +cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE))+" ");//ATTENDANCE
             }
         }while (cursor.moveToNext());
-//        bundle.putStringArray(Constant.BUNDLE_KEY_NAME,names);
-//        bundle.putStringArray(Constant.BUNDLE_KEY_ROLL,rolls);
-//        bundle.putIntArray(Constant.BUNDLE_KEY_ATTENDANCE,atten);
         /**
          * contentvalues is used to update the value of the Constant.FLAG with 0  in the database.
          */
@@ -208,6 +192,7 @@ public class DataBaseController{
         if(id!=-1){
             Message.logMessages("getAbsentList:","FLAGs updated with 0");
         }
+        return arrayList;
     }
     private static class MyHelper extends SQLiteOpenHelper {
 
