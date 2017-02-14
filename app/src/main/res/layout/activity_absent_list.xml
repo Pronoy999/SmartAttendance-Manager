@@ -14,8 +14,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:onClick="addManually"
         android:text="Press to put attendance"
         android:layout_gravity="center"
+        android:id="@+id/button"
         />
     </LinearLayout>

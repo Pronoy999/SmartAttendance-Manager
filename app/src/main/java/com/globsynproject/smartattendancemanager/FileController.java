@@ -103,6 +103,8 @@ public class FileController {
             fileInputStream.close();
         }
         catch (FileNotFoundException e){
+            //Constant.IS_CREATE_DATABASE=false;
+            //Message.logMessages("FILE: ",String.valueOf(Constant.IS_CREATE_DATABASE));
             return "not logged in";
         }
         catch (Exception e){

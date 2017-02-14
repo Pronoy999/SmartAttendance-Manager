@@ -28,16 +28,11 @@ public abstract class Constant {
     public static final String LOGIN_ACCOUNT="ACCOUNT";
     public static final String BUNDLE_KEY_SSID = "SSID";
     public static final String BUNDLE_KEY_PASSWORD = "KEYS";
-    /*public static final String BUNDLE_KEY_NAME="NAME";
-    public static final String BUNDLE_KEY_ROLL="ROLL";
-    public static final String BUNDLE_KEY_ATTENDANCE="ATTENDANCE";*/
     public static final String REGISTER_NAME="name";
     public static final String REGISTER_PASSWORD="password";
     public static final String REGISTER_FILE="Register.dat";
     public static final int ID_PROGRESS_DIALOG= 1;
     public static final String STUDENT_NUMBER_FILE="NumberStudents.dat";
-    public static String presentListArray[];
-    public static String absentListArray[];
     public static final String WIFI_WARNING_MESSAGE = "Before pressing the button, please switch on WiFi and remain disconnected from ALL networks";
     public static final String WIFI_NOT_READY_MESSAGE = "Please switch on WiFi and remain disconnected from ALL networks to proceed";
     public static final String REGISTER_FAILED_MESSAGE = "Registration failed. Please try again.\nMake sure student is ready for registration." ;

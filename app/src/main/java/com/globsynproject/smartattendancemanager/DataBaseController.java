@@ -23,7 +23,9 @@ public class DataBaseController{
      * This is the constructor of the class DataBaseAdapter
      * @param context: The current context of the activity
      */
-    public DataBaseController(Context context) { helper = new MyHelper(context);}
+    public DataBaseController(Context context) {
+            helper = new MyHelper(context);
+    }
     /**
      * This method creates the database and updates the data with student information
      * @param contentValues: It contains NAME,ROLL_NUMBER,SSID,BSSID,PASSWORD,ATTENDANCE(=0) and FLAG(=0) for each student
@@ -73,7 +75,7 @@ public class DataBaseController{
             return -1;
         }
         while (cursor.moveToNext()) {
-            attendance=cursor.getInt(6);//column index of Constant.ATTENDANCE is 6
+            attendance=cursor.getInt(cursor.getColumnIndex(Constant.ATTENDANCE));//column index of Constant.ATTENDANCE is 6
         }
         cursor.close();
         /**
@@ -81,9 +83,9 @@ public class DataBaseController{
          */
         ContentValues contentValues=new ContentValues();
         contentValues.put(Constant.ATTENDANCE,attendance+1);
-        Message.logMessages("putAttedance:","Attendance++ done");
+        Message.logMessages("putAttendance:","Attendance++ done");
         contentValues.put(Constant.FLAG,1);
-        Message.logMessages("putAttedance:","Flag updated with 1");
+        Message.logMessages("putAttendance:","Flag updated with 1");
         String[] whereArgs = {bssid};
         return sqLiteDatabase.update(Constant.TABLE_NAME,contentValues,Constant.BSSID+"=?",whereArgs);
     }
@@ -122,26 +124,26 @@ public class DataBaseController{
     /**
      * This method is TEMPORARY. Just for debugging.It displays the entire database.
      */
-//    public void getAllData() {
-//        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
-//        //String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.SSID, Constant.BSSID, Constant.PASSWORD};
-//        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, null,
-//                null, null, null, null, null);
-//        StringBuffer stringBuffer = new StringBuffer();
-//        while (cursor.moveToNext()) {
-//            int cid = cursor.getInt(0);
-//            String name = cursor.getString(1);
-//            String roll=cursor.getString(2);
-//            String ssid=cursor.getString(3);
-//            String bssid=cursor.getString(4);
-//            String password = cursor.getString(5);
-//            int attendance=cursor.getInt(6);
-//            int flag=cursor.getInt(7);
-//            stringBuffer.append(cid + " " + name + " " + roll +" "+ssid+" "+bssid+" "+password+" "+attendance+" " +flag+"\n");
-//        }
-//        cursor.close();
-//        Message.logMessages("getAllData",stringBuffer.toString());
-//    }
+   public void getAllData() {
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        //String columns[] = {Constant.NAME, Constant.ROLL_NUMBER, Constant.SSID, Constant.BSSID, Constant.PASSWORD};
+        Cursor cursor = sqLiteDatabase.query(Constant.TABLE_NAME, null,
+                null, null, null, null, null);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+            int cid = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String roll=cursor.getString(2);
+            String ssid=cursor.getString(3);
+            String bssid=cursor.getString(4);
+            String password = cursor.getString(5);
+            int attendance=cursor.getInt(6);
+            int flag=cursor.getInt(7);
+            stringBuffer.append(cid + " " + name + " " + roll +" "+ssid+" "+bssid+" "+password+" "+attendance+" " +flag+"\n");
+        }
+        cursor.close();
+        Message.logMessages("getAllData",stringBuffer.toString());
+    }
 
     /**
      * This function is called after the Database has been updated with current attendance.
@@ -150,7 +152,7 @@ public class DataBaseController{
      */
     public ArrayList<String> getPresentList(){
        ArrayList<String> arrayList=new ArrayList<>();
-        SQLiteDatabase sqLiteDatabase=helper.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
         Cursor cursor= sqLiteDatabase.query(Constant.TABLE_NAME,null,null,null,null,null,null,null);
         cursor.moveToFirst();
         do {
@@ -214,6 +216,7 @@ public class DataBaseController{
 
         private MyHelper(Context context) {
             super(context, Constant.DATABASE_NAME, null, Constant.DATABASE_VERSION);
+            //Constant.IS_CREATE_DATABASE=true;
             Message.logMessages("MyHelper:","Database created");
         }
 

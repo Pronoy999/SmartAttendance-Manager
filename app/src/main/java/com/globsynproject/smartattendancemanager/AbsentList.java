@@ -29,6 +29,13 @@ public class AbsentList extends AppCompatActivity {
                 android.R.layout.simple_list_item_checked,
                 arrayList);
         listView.setAdapter(adapter);
+        (findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DataBaseController dataBaseController=new DataBaseController(getApplicationContext());
+                dataBaseController.getAllData();
+            }
+        });
     }
     public void addManually(View view){
         int i=0;
