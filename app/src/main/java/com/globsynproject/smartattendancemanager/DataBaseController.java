@@ -190,6 +190,10 @@ public class DataBaseController{
          */
         return arrayList;
     }
+
+    /**
+     * NOTE: This is the method which updates the flag of the students after taking the attendance with zero(0).
+     */
     public void updateFlag(){
         SQLiteDatabase sqLiteDatabase=helper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();

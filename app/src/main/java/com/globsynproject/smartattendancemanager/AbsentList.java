@@ -24,7 +24,7 @@ public class AbsentList extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_list_item_checked,
+                android.R.layout.simple_list_item_1,
                 arrayList);
         listView.setAdapter(adapter);
         /*(findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
