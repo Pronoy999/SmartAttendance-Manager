@@ -7,7 +7,8 @@ The app uses the wifi hotspot on the students' android phone and the wifi on the
 individual wifi hotspots and mark the student present. 
 
 
-LICENSE
+<h1><b>LICENSE</b></h1>
+
 Copyright 2017 Pronoy Mukherjee
 
 Licensed under the Apache License, Version 2.0 (the "License");
